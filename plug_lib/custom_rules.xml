@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <target name="-pre-compile">
+        <path id="project.all.jars.path">
+                <pathelement path="lib_ex/android-support-v4.jar"/>
+        </path>
+        <echo level="info">To be packaged jar: ${toString:project.all.jars.path}   </echo>
+    </target>
+</project>

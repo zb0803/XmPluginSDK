@@ -25,3 +25,24 @@ proguard/
 
 # Log Files
 *.log
+
+.mtj.tmp/
+
+**/.project
+**/.settings
+**/.classpath
+**.org.eclipse.jdt.apt.core.prefs
+.idea/
+.DS_Store
+**/gen/
+**/obj/
+**/bin/
+local.properties
+**/out/
+.svn/
+package.html
+*.gradle
+**/build
+
+**~
+*.pyc
