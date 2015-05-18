@@ -1,0 +1,3 @@
+include ':plug_lib'
+include ':plug_common'
+include ':XmPluginDemo'
