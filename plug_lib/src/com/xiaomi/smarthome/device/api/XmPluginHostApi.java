@@ -1,4 +1,3 @@
-
 package com.xiaomi.smarthome.device.api;
 
 import android.app.Application;
@@ -745,4 +744,11 @@ public abstract class XmPluginHostApi {
         });
        
     }
+
+
+    /** ApiLevel:3 加载native so
+     * @param libName so库名字
+     *  @param classLoader 插件的classloader
+     */
+    public abstract   void loadLibrary(String model, String libName,ClassLoader classLoader);
 }
