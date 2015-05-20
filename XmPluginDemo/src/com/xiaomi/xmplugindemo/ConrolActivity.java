@@ -103,21 +103,7 @@ public class ConrolActivity extends XmPluginBaseActivity implements DemoDeviceLi
                     public void onFailure(int error, String errorInfo) {
 
                     }
-                }, new Parser<Boolean>() {
-
-                    @Override
-                    public Boolean parse(String result) throws JSONException {
-                        JSONObject json = new JSONObject(result);
-                        int code = json.getInt("code");
-
-                        if (code == 0) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-
-                });
+                }, null);
     }
 
     void getRGB() {

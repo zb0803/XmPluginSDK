@@ -120,7 +120,7 @@ public class MainActivity extends XmPluginBaseActivity {
 
             @Override
             public void onClick(View v) {
-                mHostActivity.loadWebView("http://www.baidu.com", null);
+                mHostActivity.loadWebView("http://home.mi.com/demo/cloud.html", null);
             }
         });
 
@@ -128,7 +128,7 @@ public class MainActivity extends XmPluginBaseActivity {
 
             @Override
             public void onClick(View v) {
-                mHostActivity.loadWebView("http://www.baidu.com", null);
+                mHostActivity.loadWebView("http://home.mi.com/demo/product.html", null);
             }
         });
 

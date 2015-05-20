@@ -751,4 +751,11 @@ public abstract class XmPluginHostApi {
      *  @param classLoader 插件的classloader
      */
     public abstract   void loadLibrary(String model, String libName,ClassLoader classLoader);
+    
+    /**ApiLevel:3 获取app属性
+     * @param model 
+     * @param name 属性名
+     * @return 属性值
+     */
+    public abstract String getProperty(String model, String name);
 }

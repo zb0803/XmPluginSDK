@@ -156,12 +156,19 @@
                     android:src="@drawable/control_arrow" >
                 </ImageView>
 
-                <View
-                    android:id="@+id/color_board"
+                <RelativeLayout
                     android:layout_width="130dp"
                     android:layout_height="130dp"
-                    android:layout_gravity="center_vertical" >
-                </View>
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/border"
+                    android:padding="1dp" >
+
+                    <View
+                        android:id="@+id/color_board"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+                    </View>
+                </RelativeLayout>
             </LinearLayout>
 
             <Button

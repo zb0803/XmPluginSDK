@@ -7,7 +7,7 @@ configurations{
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':plug_common')
-    //compile project(':plug_lib')
+    //compile project(':mplug_proj:plug_lib')
     providedlibs files('libs_ex/plug_lib.jar')
     providedlibs files('libs_ex/android-support-v4.jar')
 }

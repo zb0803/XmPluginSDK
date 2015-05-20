@@ -84,6 +84,9 @@ android studio中按照下面红色标记依次点击，即可调试插件
 ![](./md_images/debug_studio.png)
 
 
+eclipse中调试插件，具体参考
+
+[开发环境配置](开发环境配置.md)
 
 ------
 
