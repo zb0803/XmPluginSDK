@@ -1,6 +1,7 @@
 package com.xiaomi.smarthome.device.api;
 
 import android.app.Application;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -9,6 +10,7 @@ import android.net.wifi.WifiManager;
 import android.text.TextUtils;
 
 import com.xiaomi.plugin.core.XmPluginPackage;
+import com.xiaomi.smarthome.bluetooth.XmBluetoothDevice;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
@@ -219,7 +221,7 @@ public abstract class XmPluginHostApi {
      * 
      * @param did
      * @param pid
-     * @param entryList 属性列表
+     * @param entryList 属性列表 属性必须加 prop.
      * @param expire 分钟 必须<=3
      * @param callback
      */
@@ -758,4 +760,17 @@ public abstract class XmPluginHostApi {
      * @return 属性值
      */
     public abstract String getProperty(String model, String name);
+    
+    /**ApiLevel:3 刷新设备列表
+     * @param callback 
+     * @return 
+     */
+    public abstract void updateDeviceList(Callback<Void> callback);
+    
+    /**ApiLevel:4 插件中设备数据属性发生变化，同步数据到智能家庭主app中，比如设备列表中显示某些属性状态
+     * @param did
+     * @param jsonObject
+     * @return
+     */
+    public abstract void updateDeviceProperties(String did,JSONObject jsonObject);
 }

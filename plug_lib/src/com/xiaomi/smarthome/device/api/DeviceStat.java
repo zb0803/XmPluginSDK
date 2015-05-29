@@ -51,6 +51,8 @@ public class DeviceStat implements Parcelable {
 
     public int resetFlag;
 
+    public String ssid;
+
     public String ownerName;// 分享设备的拥有者
 
     public String ownerId;

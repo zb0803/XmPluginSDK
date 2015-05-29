@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.xiaomi.common.R;
@@ -84,6 +85,8 @@ public class CustomPullDownRefreshListView extends XMBaseListView {
         init();
     }
 
+
+
     public void setRefreshListener(OnRefreshListener listener) {
         mRefreshListener = listener;
     }
@@ -125,6 +128,12 @@ public class CustomPullDownRefreshListView extends XMBaseListView {
         }
         params.height = mCurOffsetY + mOriHeight;
         mContainer.setLayoutParams(params);
+    }
+
+
+    public void setProgressDrawable(Drawable drawable){
+        ProgressBar prog = (ProgressBar)findViewById(R.id.pull_header_prog);
+        prog.setIndeterminateDrawable(drawable);
     }
 
     public void postRefresh() {

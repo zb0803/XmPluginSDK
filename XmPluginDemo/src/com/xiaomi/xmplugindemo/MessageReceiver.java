@@ -18,8 +18,8 @@ public class MessageReceiver implements IXmPluginMessageReceiver {
 
     @Override
     public boolean handleMessage(Context context, XmPluginPackage xmPluginPackage, int type,
-            Intent intent,
-            DeviceStat deviceStat) {
+                                 Intent intent,
+                                 DeviceStat deviceStat) {
         switch (type) {
             case LAUNCHER: {// 启动入口
                 XmPluginHostApi.instance().startActivity(context, xmPluginPackage, intent,
@@ -35,7 +35,7 @@ public class MessageReceiver implements IXmPluginMessageReceiver {
 
     @Override
     public boolean handleMessage(Context context, XmPluginPackage xmPluginPackage, int type,
-            Intent intent, DeviceStat deviceStat, MessageCallback callback) {
+                                 Intent intent, DeviceStat deviceStat, MessageCallback callback) {
         // TODO Auto-generated method stub
         return false;
     }

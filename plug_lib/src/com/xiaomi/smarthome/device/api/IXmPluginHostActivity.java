@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IXmPluginHostActivity {
     public FragmentActivity activity();
@@ -166,4 +167,23 @@ public interface IXmPluginHostActivity {
             String shareImageUrl,
             String shareThumbUrl,
             Bitmap thumb);
+
+    /**
+     * ApiLevel:4 刷新新连接进入的特定子设备
+     *
+     * @param targetModel
+     * @param callback
+     */
+    public void startSearchNewDevice(String targetModel, String did,
+                      DeviceFindCallback callback);
+    public interface DeviceFindCallback {
+        void onDeviceFind(List<DeviceStat> deviceStatList);
+    }
+
+    
+    /**
+     * 打开智能场景页
+     * @param did 设备id
+     */
+    public abstract void openSceneActivity(String did);
 }

@@ -4,6 +4,7 @@ package com.xiaomi.smarthome.device.api;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 import java.lang.reflect.Field;
 
@@ -33,6 +34,8 @@ public class BaseFragment extends Fragment {
     public XmPluginBaseActivity xmPluginActivity() {
         return mXmPluginBaseActivity;
     }
+    
+    
 
     // 插件内启动activity
     public void startActivityForResult(Intent intent, String className,
