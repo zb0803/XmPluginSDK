@@ -40,20 +40,18 @@ key.alias.password=android
 4.Linux系统打开终端terminal，进入插件工程目录，执行
 
 ```
-./build.sh type project_name model
+./build.sh type project_name
 ```
 type 为debug和release两种
 
 project_name 为插件工程名
 
-model为插件的model名
 
 或者修改build.sh文件,直接指定build参数，这样只需要执行./build.sh即可
 
 ```
 BUILD_TYPE=$1
 PROJECT_NAME=$2
-MODEL=$3
 
 ```
 
@@ -64,11 +62,9 @@ MODEL=$3
 6.如果没有按照ant工具，可以先在eclipse或者android studio中打包，签名好，然后执行
 
 ```
-adb push bin/$MODEL.apk /sdcard/SmartHome/plugin/debug/$MODEL.mpk
+adb push bin/your.apk /sdcard/SmartHome/plugin/debug/1.mpk
 
-adb shell "am broadcast -a com.xiaomi.smarthome.action.OPEN_API --es type plugin_debug --es sub_type download_plugin_from_sdcard --es param_model $MODEL"
-
-adb shell "am broadcast -a com.xiaomi.smarthome.action.OPEN_API --es type plugin_debug --es sub_type install_plugin --es param_model $MODEL"
+adb shell "am broadcast -a com.xiaomi.smarthome.action.OPEN_API --es type plugin_debug --es sub_type debug_package"
 
 ```
 
@@ -81,7 +77,7 @@ adb shell "am broadcast -a com.xiaomi.smarthome.action.OPEN_API --es type plugin
 
 android studio中按照下面红色标记依次点击，即可调试插件
 
-![](./md_images/debug_studio.png)
+![](./md_images/debug_studio.png =539x626)
 
 
 eclipse中调试插件，具体参考

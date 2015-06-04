@@ -26,6 +26,14 @@
         <meta-data
             android:name="message_handler"
             android:value="com.xiaomi.xmplugindemo.MessageReceiver" />
+        <!-- 开发者Id, 必须 -->
+        <meta-data
+            android:name="MiHomeDeveloperId"
+            android:value="id_298342089" />
+        <!-- 支持的运行平台,必须 -->
+        <meta-data
+            android:name="MiHomePlatform"
+            android:value="phone" />
         <!-- 设备场景配置信息，可选 -->
         <meta-data
             android:name="SHPluginSceneInfo"
