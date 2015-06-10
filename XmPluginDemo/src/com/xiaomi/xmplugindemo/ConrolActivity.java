@@ -40,7 +40,7 @@ public class ConrolActivity extends XmPluginBaseActivity implements DemoDeviceLi
         // mParcelData =
         // (ParcelData)savedInstanceState.getParcelable("parcelData");
 
-        mDevice = new DemoDevice(mDeviceStat);
+        mDevice = DemoDevice.getDevice(mDeviceStat);
 
         // 设置titlebar在顶部透明显示时的顶部padding
         mHostActivity.setTitleBarPadding(findViewById(R.id.title_bar));

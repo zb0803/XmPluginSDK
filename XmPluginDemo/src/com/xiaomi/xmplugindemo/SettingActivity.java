@@ -15,7 +15,8 @@ public class SettingActivity extends XmPluginBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        mDevice = new DemoDevice(mDeviceStat);
+        
+        mDevice = DemoDevice.getDevice(mDeviceStat);
 
         // 设置titlebar在顶部透明显示时的顶部padding
         mHostActivity.setTitleBarPadding(findViewById(R.id.title_bar));

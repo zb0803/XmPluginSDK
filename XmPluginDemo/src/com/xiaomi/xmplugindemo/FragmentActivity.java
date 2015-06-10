@@ -18,8 +18,9 @@ public class FragmentActivity extends XmPluginBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-        mDevice = new DemoDevice(mDeviceStat);
-
+        
+        mDevice = DemoDevice.getDevice(mDeviceStat);
+        
         // 设置titlebar在顶部透明显示时的顶部padding
         mHostActivity.setTitleBarPadding(findViewById(R.id.title_bar));
         ((TextView) findViewById(R.id.title_bar_title)).setText("测试Fragment");
