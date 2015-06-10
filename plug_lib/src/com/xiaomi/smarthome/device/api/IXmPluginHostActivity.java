@@ -11,7 +11,18 @@ import java.util.List;
 
 public interface IXmPluginHostActivity {
     public FragmentActivity activity();
-
+    
+    /**
+     * ApiLevel:5
+     * 在启动设备更多页时，可以告知更多页该Item是调起Host程序的activity
+     * 具体哪个activity由TARGET_ACTIVITY_IN_HOST_XXX指派
+     */
+    public static final String KEY_INTENT_TARGET_ACTIVITY_IN_HOST = "target_activity";
+    /**
+     * ApiLevel:5
+     */
+    public static final int TARGET_ACTIVITY_IN_HOST_DEVICE_SCENE = 1;
+    
     // 动画类型
     public final String ANIM_SLIDE_IN_LEFT = "slide_in_left";
     public final String ANIM_SLIDE_IN_RIGHT = "slide_in_right";
@@ -182,7 +193,7 @@ public interface IXmPluginHostActivity {
 
     
     /**
-     * 打开智能场景页
+     * ApiLevel:4 打开智能场景页
      * @param did 设备id
      */
     public abstract void openSceneActivity(String did);

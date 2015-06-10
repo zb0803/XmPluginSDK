@@ -427,7 +427,7 @@ public class MLAlertController {
         if(mTransplantBg) {
         	mWindow.findViewById(R.id.parentPanel).setBackgroundColor(mContext.getResources().getColor(android.R.color.transparent));
         } else {
-        	mWindow.findViewById(R.id.parentPanel).setBackgroundColor(0xfff0f0f0);
+        	mWindow.findViewById(R.id.parentPanel).setBackgroundColor(0xffffffff);
         }
 
         /**
