@@ -773,4 +773,11 @@ public abstract class XmPluginHostApi {
      * @return
      */
     public abstract void updateDeviceProperties(String did,JSONObject jsonObject);
+    
+    /**ApiLevel:4 写log文件，可以从反馈上报到统计平台
+     * @param tag
+     * @param info
+     * @return
+     */
+    public abstract void log(String tag,String info);
 }

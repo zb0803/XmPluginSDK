@@ -103,6 +103,10 @@ public class DeviceStat implements Parcelable {
         return 0;
     }
 
+    public int hashCode(){
+        return did.hashCode();
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(did);

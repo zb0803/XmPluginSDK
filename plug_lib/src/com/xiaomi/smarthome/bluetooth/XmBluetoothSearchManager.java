@@ -15,7 +15,9 @@ public abstract class XmBluetoothSearchManager {
             this.handlerType = handlerType;
         }
 
+        public abstract void onSearchStarted();
         public abstract void onDeviceFounded(XmBluetoothDevice device);
+        public abstract void onSearchStopped();
     }
 
     public static XmBluetoothSearchManager getInstance() {

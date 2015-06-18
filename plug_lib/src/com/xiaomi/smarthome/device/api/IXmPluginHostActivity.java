@@ -197,4 +197,9 @@ public interface IXmPluginHostActivity {
      * @param did 设备id
      */
     public abstract void openSceneActivity(String did);
+    
+    /**
+     * ApiLevel:4 是否支持状态栏透明显示
+     */
+    public abstract boolean isTranslucentStatusbarEnable();
 }
