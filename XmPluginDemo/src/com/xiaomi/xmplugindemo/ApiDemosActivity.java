@@ -8,10 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
-<<<<<<< HEAD
 import com.xiaomi.smarthome.device.api.DeviceStat;
-=======
->>>>>>> origin/master
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 import com.xiaomi.smarthome.device.api.XmPluginHostApi;
 
@@ -56,7 +53,6 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
                 dialog.show();
             }
         });
-<<<<<<< HEAD
 
         findViewById(R.id.openDevice).setOnClickListener(new OnClickListener() {
 
@@ -77,8 +73,6 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
                 }).show();
             }
         });
-=======
->>>>>>> origin/master
     }
 
 }

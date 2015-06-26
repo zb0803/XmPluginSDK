@@ -857,7 +857,6 @@ public abstract class XmPluginHostApi {
     public abstract boolean bindService(Intent service, XmPluginPackage xmPluginPackage,
             Class activityClass, ServiceConnection conn,
             int flags);
-<<<<<<< HEAD
     
     /**ApiLevel:6
      * 把某个设备添加桌面快捷方式
@@ -880,6 +879,4 @@ public abstract class XmPluginHostApi {
             String did,
             Context context,
             final Callback<Void> callback);
-=======
->>>>>>> origin/master
 }
