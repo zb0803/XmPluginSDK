@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xiaomi.xmplugindemo"
+<<<<<<< HEAD
     android:versionCode="42"
     android:versionName="0.1.42" >
+=======
+    android:versionCode="41"
+    android:versionName="0.1.41" >
+>>>>>>> origin/master
 
     <uses-sdk
         android:minSdkVersion="14"

@@ -6,9 +6,13 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.xiaomi.plugin.core.XmPluginPackage;
+<<<<<<< HEAD
 /**
  * ApiLevel:6
  */
+=======
+
+>>>>>>> origin/master
 public class XmPluginBaseService extends Service {
 
     IXmPluginHostService mHostService;

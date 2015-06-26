@@ -61,6 +61,7 @@
                 android:layout_marginRight="3dp"
                 android:src="@drawable/arrow_right" />
         </RelativeLayout>
+<<<<<<< HEAD
         
           
           <RelativeLayout
@@ -87,6 +88,8 @@
                 android:layout_marginRight="3dp"
                 android:src="@drawable/arrow_right" />
         </RelativeLayout>
+=======
+>>>>>>> origin/master
     </LinearLayout>
 
 </LinearLayout>
