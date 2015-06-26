@@ -45,42 +45,32 @@ public class MainActivity extends XmPluginBaseActivity {
             public void onClick(View v) {
                 // 点击菜单返回界面，需要在onActivityResult接收参数
                 ArrayList<String> menus = new ArrayList<String>();
-                menus.add("分享");
-                //
+                menus.add("ApiDemo-MenuOnResult-分享");
 
-                 // 点击直接进入下一页
-                 ArrayList<Intent> intents = new ArrayList<Intent>();
-                 Intent intent = mHostActivity.getActivityIntent(null,
-                 SettingActivity.class.getName());
-                 intent.putExtra("menu", "设置");
-                 intents.add(intent);
-//                
-                 
-                // intent = new Intent();
-                // intent.setClassName("com.xiaomi.smarthome",
-                // "com.xiaomi.smarthome.framework.webview.CommonWebViewActivity");
-                // intent.putExtra("url", "http://home.mi.com");
-                // intent.putExtra("title", "webview");
-                // intent.putExtra("menu", "webview");
-                // intents.add(intent);
-
-                Intent apiDemosIntent = mHostActivity.getActivityIntent(null,
-                        ApiDemosActivity.class.getName());
-                apiDemosIntent.putExtra("menu", "ApiDemos");
-                intents.add(apiDemosIntent);
-
-                Intent mihomeIntent = new Intent();
-                mihomeIntent.setClassName("com.xiaomi.smarthome",
-                        "com.xiaomi.smarthome.framework.webview.CommonWebViewActivity");
-                mihomeIntent.putExtra("url", "http://home.mi.com");
-                mihomeIntent.putExtra("title", "MiHome");
-                mihomeIntent.putExtra("menu", "MiHome");
-                intents.add(mihomeIntent);
+                ArrayList<Intent> intents = new ArrayList<Intent>();
 
                 Intent welcomeIntent = mHostActivity.getActivityIntent(null,
                         WelcomeActivity.class.getName());
                 welcomeIntent.putExtra("menu", "你好, 开发者");
                 intents.add(welcomeIntent);
+
+                Intent intent = mHostActivity.getActivityIntent(null,
+                        SettingActivity.class.getName());
+                intent.putExtra("menu", "设置");
+                intents.add(intent);
+
+                Intent apiDemosIntent = mHostActivity.getActivityIntent(null,
+                        ApiDemosActivity.class.getName());
+                apiDemosIntent.putExtra("menu", "ApiDemo-Others");
+                intents.add(apiDemosIntent);
+
+                // Intent mihomeIntent = new Intent();
+                // mihomeIntent.setClassName("com.xiaomi.smarthome",
+                // "com.xiaomi.smarthome.framework.webview.CommonWebViewActivity");
+                // mihomeIntent.putExtra("url", "http://home.mi.com");
+                // mihomeIntent.putExtra("title", "MiHome");
+                // mihomeIntent.putExtra("menu", "MiHome");
+                // intents.add(mihomeIntent);
 
                 // 设置自定义菜单
                 mHostActivity.openMoreMenu(menus, intents, true, REQUEST_MENUS);
@@ -140,10 +130,15 @@ public class MainActivity extends XmPluginBaseActivity {
             // 自定义菜单返回
             if (requestCode == REQUEST_MENUS && data != null) {
                 String selectMenu = data.getStringExtra("menu");
-                if (selectMenu.equals("分享")) {
-                    //分享微博，微信，米聊
-                    mHostActivity.share("小米智能家居分享", 
-                            "小米Note 顶配双网通版 香槟金 64GB","http://home.mi.com/share.html?gid=39", "http://static.home.mi.com/app/shop/img?id=shop_9f52eb50febcbc5e3a30b95c2290ecfb.jpg&t=webp&z=1&q=80", "http://static.home.mi.com/app/shop/img?id=shop_9f52eb50febcbc5e3a30b95c2290ecfb.jpg&t=webp&z=1&q=80", null);
+                if (selectMenu.equals("ApiDemo-MenuOnResult-分享")) {
+                    // 分享微博，微信，米聊
+                    mHostActivity
+                            .share("小米智能家居分享",
+                                    "小米Note 顶配双网通版 香槟金 64GB",
+                                    "http://home.mi.com/share.html?gid=39",
+                                    "http://static.home.mi.com/app/shop/img?id=shop_9f52eb50febcbc5e3a30b95c2290ecfb.jpg&t=webp&z=1&q=80",
+                                    "http://static.home.mi.com/app/shop/img?id=shop_9f52eb50febcbc5e3a30b95c2290ecfb.jpg&t=webp&z=1&q=80",
+                                    null);
                 } else {
                     Toast.makeText(activity(), selectMenu, Toast.LENGTH_SHORT).show();
 

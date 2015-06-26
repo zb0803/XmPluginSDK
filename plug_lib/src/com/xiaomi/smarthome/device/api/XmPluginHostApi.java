@@ -1,16 +1,16 @@
+
 package com.xiaomi.smarthome.device.api;
 
 import android.app.Application;
-import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.location.Location;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.text.TextUtils;
 
 import com.xiaomi.plugin.core.XmPluginPackage;
-import com.xiaomi.smarthome.bluetooth.XmBluetoothDevice;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
@@ -253,13 +253,25 @@ public abstract class XmPluginHostApi {
     // ///////////////
 
     /**
-     * ApiLevel:2 智能家庭后台统计
+     * ApiLevel:2 智能家庭后台统计(Deprecated)
      * 
      * @param appId 第三方插件开放唯一id，定义为厂商名
      * @param value 为Object 可以为int或String或JsonObject
      * @param extra 可以为null
      */
+    @Deprecated
     public abstract void addRecord(String appId, String key, Object value, JSONObject extra);
+
+    /**
+     * ApiLevel:6 智能家庭后台统计
+     * 
+     * @param loadedInfo 插件上下文
+     * @param key
+     * @param value
+     * @param extra
+     */
+    public abstract void addRecord(XmPluginPackage loadedInfo, String key, Object value,
+            JSONObject extra);
 
     // ///////////////
     // scence
@@ -549,7 +561,9 @@ public abstract class XmPluginHostApi {
 
     // ///////////////
 
-    /**ApiLevel:3 上报gps信息
+    /**
+     * ApiLevel:3 上报gps信息
+     * 
      * @param model
      * @param did
      * @param lng
@@ -584,7 +598,9 @@ public abstract class XmPluginHostApi {
         callSmartHomeApi(model, "/location/set", dataObj, callback, null);
     }
 
-    /**ApiLevel:3 获取天气
+    /**
+     * ApiLevel:3 获取天气
+     * 
      * @param model
      * @param did
      * @param callback
@@ -690,94 +706,155 @@ public abstract class XmPluginHostApi {
     public abstract void unBindDevice(final String did, int pid,
             final Callback<Void> callback);
 
-   
     /**
      * ApiLevel:3 获取最新位置
+     * 
      * @return
      */
     public abstract Location getLastLocation();
 
-    /**ApiLevel:3 判断是否是网络定位
+    /**
+     * ApiLevel:3 判断是否是网络定位
+     * 
      * @return
      */
     public abstract boolean isNetworkLocationEnabled();
 
-    /**ApiLevel:3 判断是否gps定位
+    /**
+     * ApiLevel:3 判断是否gps定位
+     * 
      * @return
      */
     public abstract boolean isGPSLocationEnable();
 
-    /** ApiLevel:3 获取位置
+    /**
+     * ApiLevel:3 获取位置
+     * 
      * @param callback
      */
     public abstract void requestLocation(Callback<Location> callback);
 
-    /** ApiLevel:3 获取设备固件升级信息
+    /**
+     * ApiLevel:3 获取设备固件升级信息
+     * 
      * @param callback
      */
-    public void getUpdateInfo(String model,String did, int pid,
+    public void getUpdateInfo(String model, String did, int pid,
             final Callback<DeviceUpdateInfo> callback) {
         JSONObject dataObj = new JSONObject();
         try {
             dataObj.put("did", did);
             dataObj.put("pid", pid);
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             if (callback != null)
                 callback.onFailure(-1, e.toString());
             return;
         }
 
-        callSmartHomeApi(model, "/home/checkversion", dataObj, callback, new Parser<DeviceUpdateInfo>() {
-            @Override
-            public DeviceUpdateInfo parse(String result) throws JSONException {
-                DeviceUpdateInfo updateInfo = new DeviceUpdateInfo();
-                JSONObject jsonObj = new JSONObject(result);
-                if (jsonObj.optBoolean("updating")) {
-                    updateInfo.mHasNewFirmware = false;
-                } else {
-                    updateInfo.mHasNewFirmware = !jsonObj.optBoolean("isLatest");
-                }
-                updateInfo.mCurVersion = jsonObj.optString("curr");
-                updateInfo.mNewVersion = jsonObj.optString("latest");
-                updateInfo.mUpdateDes = jsonObj.optString("description");
-                return updateInfo;
-            }
-        });
-       
+        callSmartHomeApi(model, "/home/checkversion", dataObj, callback,
+                new Parser<DeviceUpdateInfo>() {
+                    @Override
+                    public DeviceUpdateInfo parse(String result) throws JSONException {
+                        DeviceUpdateInfo updateInfo = new DeviceUpdateInfo();
+                        JSONObject jsonObj = new JSONObject(result);
+                        if (jsonObj.optBoolean("updating")) {
+                            updateInfo.mHasNewFirmware = false;
+                        } else {
+                            updateInfo.mHasNewFirmware = !jsonObj.optBoolean("isLatest");
+                        }
+                        updateInfo.mCurVersion = jsonObj.optString("curr");
+                        updateInfo.mNewVersion = jsonObj.optString("latest");
+                        updateInfo.mUpdateDes = jsonObj.optString("description");
+                        return updateInfo;
+                    }
+                });
+
     }
 
-
-    /** ApiLevel:3 加载native so
+    /**
+     * ApiLevel:3 加载native so
+     * 
      * @param libName so库名字
-     *  @param classLoader 插件的classloader
+     * @param classLoader 插件的classloader
      */
-    public abstract   void loadLibrary(String model, String libName,ClassLoader classLoader);
-    
-    /**ApiLevel:3 获取app属性
-     * @param model 
+    @Deprecated
+    public abstract void loadLibrary(String model, String libName, ClassLoader classLoader);
+
+    /**
+     * ApiLevel:6 加载native so
+     * 
+     * @param loadedInfo 插件上下文
+     * @param libName so库名字
+     */
+    public abstract void loadLibrary(XmPluginPackage loadedInfo, String libName);
+
+    /**
+     * ApiLevel:3 获取app属性
+     * 
+     * @param model
      * @param name 属性名
      * @return 属性值
      */
     public abstract String getProperty(String model, String name);
-    
-    /**ApiLevel:3 刷新设备列表
-     * @param callback 
-     * @return 
+
+    /**
+     * ApiLevel:3 刷新设备列表
+     * 
+     * @param callback
+     * @return
      */
     public abstract void updateDeviceList(Callback<Void> callback);
-    
-    /**ApiLevel:4 插件中设备数据属性发生变化，同步数据到智能家庭主app中，比如设备列表中显示某些属性状态
+
+    /**
+     * ApiLevel:4 插件中设备数据属性发生变化，同步数据到智能家庭主app中，比如设备列表中显示某些属性状态
+     * 
      * @param did
      * @param jsonObject
      * @return
      */
-    public abstract void updateDeviceProperties(String did,JSONObject jsonObject);
-    
-    /**ApiLevel:4 写log文件，可以从反馈上报到统计平台
+    public abstract void updateDeviceProperties(String did, JSONObject jsonObject);
+
+    /**
+     * ApiLevel:4 写log文件，可以从反馈上报到统计平台
+     * 
      * @param tag
      * @param info
      * @return
      */
-    public abstract void log(String tag,String info);
+    public abstract void log(String tag, String info);
+
+    /**
+     * ApiLevel:6
+     * 
+     * @param service
+     * @param xmPluginPackage
+     * @param activityClass
+     */
+    public abstract void startService(Intent service, XmPluginPackage xmPluginPackage,
+            Class activityClass);
+
+    /**
+     * ApiLevel:6
+     * 
+     * @param service
+     * @param xmPluginPackage
+     * @param activityClass
+     * @return
+     */
+    public abstract boolean stopService(Intent service, XmPluginPackage xmPluginPackage,
+            Class activityClass);
+
+    /**
+     * ApiLevel:6
+     * 
+     * @param service
+     * @param xmPluginPackage
+     * @param activityClass
+     * @param conn
+     * @param flags
+     * @return
+     */
+    public abstract boolean bindService(Intent service, XmPluginPackage xmPluginPackage,
+            Class activityClass, ServiceConnection conn,
+            int flags);
 }

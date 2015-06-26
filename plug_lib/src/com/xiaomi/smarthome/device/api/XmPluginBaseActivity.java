@@ -90,6 +90,8 @@ public class XmPluginBaseActivity extends FragmentActivity implements IXmPluginA
         mMainActivity = xmPluginHostActivity.activity();
         mPluginPackage = pluginPackage;
         mDeviceStat = deviceStat;
+        
+        attachBaseContext(mMainActivity);
     }
 
     // 获取宿主activity，提供Context环境，用于获取资源，获取service服务，创建Dialog等

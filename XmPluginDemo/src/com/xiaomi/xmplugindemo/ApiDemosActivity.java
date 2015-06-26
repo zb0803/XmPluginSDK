@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 
 public class ApiDemosActivity extends XmPluginBaseActivity {
@@ -34,6 +35,17 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
             @Override
             public void onClick(View v) {
                 mHostActivity.loadWebView("http://home.mi.com", "MiHome");
+            }
+        });
+
+        findViewById(R.id.dialog).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                MLAlertDialog dialog = new MLAlertDialog.Builder(ApiDemosActivity.this).setMessage(
+                        "测试Dialog").setPositiveButton("确定", null).create();
+                dialog.getWindow().setWindowAnimations(R.style.V5_Animation_Dialog);
+                dialog.show();
             }
         });
     }

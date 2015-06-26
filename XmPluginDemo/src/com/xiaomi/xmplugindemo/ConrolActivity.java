@@ -3,17 +3,22 @@ package com.xiaomi.xmplugindemo;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 import com.xiaomi.smarthome.device.api.Callback;
 import com.xiaomi.smarthome.device.api.Parser;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 import com.xiaomi.smarthome.device.api.XmPluginHostApi;
 import com.xiaomi.xmplugindemo.DemoDevice.DemoDeviceListener;
+import com.xiaomi.xmplugindemo.widget.MyEditText;
+import com.xiaomi.xmplugindemo.widget.MyEditText.MyEditTextListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,24 +26,53 @@ import org.json.JSONObject;
 
 public class ConrolActivity extends XmPluginBaseActivity implements DemoDeviceListener {
 
-    EditText mREdit;
-    EditText mGEdit;
-    EditText mBEdit;
+    EditText mFocusHolder;
+
+    MyEditText mREdit;
+    MyEditText mGEdit;
+    MyEditText mBEdit;
     View mColorBoard;
     Button mSend;
 
     DemoDevice mDevice;
 
-    // ParcelData mParcelData;
+    OnEditorActionListener mEditorListener = new OnEditorActionListener() {
+
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                v.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        clearAllFocus();
+                        setRGB();
+                    }
+                });
+            }
+            return false;
+        }
+    };
+
+    MyEditTextListener mEditListener = new MyEditTextListener() {
+
+        @Override
+        public void onImeBack(View view, String text) {
+            view.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    clearAllFocus();
+                }
+            });
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_control);
-
-        // mParcelData =
-        // (ParcelData)savedInstanceState.getParcelable("parcelData");
 
         mDevice = DemoDevice.getDevice(mDeviceStat);
 
@@ -55,9 +89,23 @@ public class ConrolActivity extends XmPluginBaseActivity implements DemoDeviceLi
                 R.string.control_title));
         findViewById(R.id.title_bar_more).setVisibility(View.GONE);
 
-        mREdit = (EditText) findViewById(R.id.r_edit);
-        mGEdit = (EditText) findViewById(R.id.g_edit);
-        mBEdit = (EditText) findViewById(R.id.b_edit);
+        mFocusHolder = (EditText) findViewById(R.id.focus_holder);
+
+        mREdit = (MyEditText) findViewById(R.id.r_edit);
+        mREdit.setOnEditorActionListener(mEditorListener);
+        mREdit.addListener(mEditListener);
+        mREdit.setSelectAllOnFocus(true);
+
+        mGEdit = (MyEditText) findViewById(R.id.g_edit);
+        mGEdit.setOnEditorActionListener(mEditorListener);
+        mGEdit.addListener(mEditListener);
+        mGEdit.setSelectAllOnFocus(true);
+
+        mBEdit = (MyEditText) findViewById(R.id.b_edit);
+        mBEdit.setOnEditorActionListener(mEditorListener);
+        mBEdit.addListener(mEditListener);
+        mBEdit.setSelectAllOnFocus(true);
+
         mColorBoard = findViewById(R.id.color_board);
         mSend = (Button) findViewById(R.id.send);
 
@@ -65,9 +113,12 @@ public class ConrolActivity extends XmPluginBaseActivity implements DemoDeviceLi
 
             @Override
             public void onClick(View v) {
+                clearAllFocus();
                 setRGB();
             }
         });
+
+        clearAllFocus();
 
         mDevice.registerListener(this);
 
@@ -81,11 +132,47 @@ public class ConrolActivity extends XmPluginBaseActivity implements DemoDeviceLi
         mDevice.unregisterListener(this);
     }
 
-    void setRGB() {
+    private void clearAllFocus() {
+        mREdit.clearFocus();
+        mGEdit.clearFocus();
+        mBEdit.clearFocus();
+        mFocusHolder.requestFocus();
+    }
 
-        int r = Integer.parseInt(mREdit.getText().toString());
-        int g = Integer.parseInt(mGEdit.getText().toString());
-        int b = Integer.parseInt(mBEdit.getText().toString());
+    void setRGB() {
+        int r = 0;
+        try {
+            r = Integer.parseInt(mREdit.getText().toString());
+        } catch (Exception e) {
+        }
+        if (r < 0) {
+            r = 0;
+        } else if (255 < r) {
+            r = 255;
+        }
+
+        int g = 0;
+        try {
+            g = Integer.parseInt(mGEdit.getText().toString());
+        } catch (Exception e) {
+        }
+        if (g < 0) {
+            g = 0;
+        } else if (255 < g) {
+            g = 255;
+        }
+
+        int b = 0;
+        try {
+            b = Integer.parseInt(mBEdit.getText().toString());
+        } catch (Exception e) {
+        }
+        if (b < 0) {
+            b = 0;
+        } else if (255 < b) {
+            b = 255;
+        }
+
         final int rgb = r << 16 | g << 8 | b;
 
         JSONArray params = new JSONArray();
@@ -107,7 +194,9 @@ public class ConrolActivity extends XmPluginBaseActivity implements DemoDeviceLi
     }
 
     void getRGB() {
-        XmPluginHostApi.instance().callMethod(mDevice.getDid(), "get_rgb", new JSONArray(),
+        JSONArray params = new JSONArray();
+        params.put("rgb");
+        XmPluginHostApi.instance().callMethod(mDevice.getDid(), "get_prop", params,
                 new Callback<Integer>() {
 
                     @Override
