@@ -430,6 +430,12 @@ public class MLAlertController {
         	mWindow.findViewById(R.id.parentPanel).setBackgroundColor(0xffffffff);
         }
 
+        if(mListView != null){
+            // Listview有分割线divider，因此header和listview需要显示分割线
+            mWindow.findViewById(R.id.title_divider_line).setVisibility(View.VISIBLE);
+        } else {
+            mWindow.findViewById(R.id.title_divider_line).setVisibility(View.GONE);
+        }
         /**
          * Add margin top for the button panel if we have not any panel
          */

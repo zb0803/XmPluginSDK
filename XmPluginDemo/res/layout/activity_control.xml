@@ -74,7 +74,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/font_size_22sp" />
 
-                        <EditText
+                        <com.xiaomi.xmplugindemo.widget.MyEditText
                             android:id="@+id/r_edit"
                             android:layout_width="70dp"
                             android:layout_height="40dp"
@@ -86,7 +86,8 @@
                             android:imeOptions="actionNext"
                             android:inputType="number"
                             android:nextFocusForward="@+id/g_edit"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textCursorDrawable="@drawable/cursor" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -103,7 +104,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/font_size_22sp" />
 
-                        <EditText
+                        <com.xiaomi.xmplugindemo.widget.MyEditText
                             android:id="@+id/g_edit"
                             android:layout_width="70dp"
                             android:layout_height="40dp"
@@ -115,7 +116,8 @@
                             android:imeOptions="actionNext"
                             android:inputType="number"
                             android:nextFocusForward="@+id/b_edit"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textCursorDrawable="@drawable/cursor" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -132,7 +134,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/font_size_22sp" />
 
-                        <EditText
+                        <com.xiaomi.xmplugindemo.widget.MyEditText
                             android:id="@+id/b_edit"
                             android:layout_width="70dp"
                             android:layout_height="40dp"
@@ -143,7 +145,8 @@
                             android:hint="0-255"
                             android:imeOptions="actionDone"
                             android:inputType="number"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textCursorDrawable="@drawable/cursor" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -170,6 +173,11 @@
                     </View>
                 </RelativeLayout>
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/focus_holder"
+                android:layout_width="1dp"
+                android:layout_height="1dp" />
 
             <Button
                 android:id="@+id/send"

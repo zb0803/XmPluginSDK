@@ -50,8 +50,9 @@
         <!-- If the client uses a customTitle, it will be added here. -->
     </LinearLayout>
     <View 
+        android:id="@+id/title_divider_line"
         android:layout_width="fill_parent"
-        android:layout_height="1px"
+        android:layout_height="2px"
         android:background="#ececec"/>
 
     <LinearLayout

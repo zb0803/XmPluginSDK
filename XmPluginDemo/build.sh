@@ -1,5 +1,5 @@
-BUILD_TYPE=$1
-PROJECT_NAME=$2
+BUILD_TYPE=debug
+PROJECT_NAME=XmPluginDemo
 
 HELP_STRING="use 'build.sh debug yourAntProject' or 'build.sh release yourAntProject'"
 

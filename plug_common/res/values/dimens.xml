@@ -11,7 +11,7 @@
     <dimen name="font_size_2">18sp</dimen>
     <dimen name="font_size_3">16sp</dimen>
     <dimen name="font_size_4">14sp</dimen>
-    <dimen name="font_size_5">12sp</dimen>
+    <dimen name="font_size_5">13sp</dimen>
     <dimen name="font_size_6">10sp</dimen>
     <dimen name="font_size_36sp">36sp</dimen>
     <dimen name="font_size_48sp">48sp</dimen>
@@ -109,6 +109,6 @@
     <dimen name="scene_operation_title_height">134dp</dimen>
 
     <dimen name="title_bar_top_padding">20dp</dimen>
-    <dimen name="title_bar_text_size">16sp</dimen>
+    <dimen name="title_bar_text_size">15sp</dimen>
 
 </resources>

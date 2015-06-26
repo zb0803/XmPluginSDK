@@ -202,4 +202,12 @@ public interface IXmPluginHostActivity {
      * ApiLevel:4 是否支持状态栏透明显示
      */
     public abstract boolean isTranslucentStatusbarEnable();
+    
+    
+    /**
+     * ApiLevel:6
+     * 打开一个设备
+     * @param did
+     */
+    public abstract void openDevice(String did,Intent intent);
 }
