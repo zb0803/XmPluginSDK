@@ -4,7 +4,6 @@
     <string name="app_name">XmPluginDemo</string>
     <string name="hello_world">这是小米智能家庭插件</string>
     <string name="action_settings">Settings</string>
-    <string name="plugin_scene_info">{\"launch\":[{\"launch_type\":\"device\",\"name\":\"进入柔光模式\",\"has_params\":true,\"set_param_activity\":\"scene_setting\"}],\"action\":[{\"action_type\":\"set_rgb\",\"name\":\"进入高亮模式\",\"has_params\":false}]}</string>
     <string name="welcome">欢迎使用小米开发板</string>
     <string name="control_example">控制示例</string>
     <string name="cloud_debug">云端调试</string>

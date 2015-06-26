@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xiaomi.xmplugindemo"
-    android:versionCode="40"
-    android:versionName="0.1.40" >
+    android:versionCode="41"
+    android:versionName="0.1.41" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -34,10 +34,6 @@
         <meta-data
             android:name="MiHomePlatform"
             android:value="phone" />
-        <!-- 设备场景配置信息，可选 -->
-        <meta-data
-            android:name="SHPluginSceneInfo"
-            android:value="@string/plugin_scene_info" />
 
         <activity
             android:name=".MainActivity"
