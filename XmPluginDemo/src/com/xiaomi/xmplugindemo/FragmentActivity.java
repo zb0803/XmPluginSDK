@@ -21,6 +21,10 @@ public class FragmentActivity extends XmPluginBaseActivity {
         
         mDevice = DemoDevice.getDevice(mDeviceStat);
         
+//        SerializableData sData = (SerializableData) getIntent().getSerializableExtra("sData");
+        ParcelData pData = (ParcelData) getIntent().getParcelableExtra("pData");
+    
+        
         // 设置titlebar在顶部透明显示时的顶部padding
         mHostActivity.setTitleBarPadding(findViewById(R.id.title_bar));
         ((TextView) findViewById(R.id.title_bar_title)).setText("测试Fragment");

@@ -63,6 +63,8 @@ public class DeviceStat implements Parcelable {
     
     public Bundle property = new Bundle();
 
+    /**ApiLevel:6*/
+    public int showMode;//是否在设备列表显示
 
     public DeviceStat() {
         did = "";
@@ -95,6 +97,7 @@ public class DeviceStat implements Parcelable {
             } catch (JSONException e) {
             }
         }
+        showMode = in.readInt();
     }
 
     @Override
@@ -121,6 +124,7 @@ public class DeviceStat implements Parcelable {
         dest.writeInt(authFlag);
         dest.writeBundle(property);
         dest.writeString(propInfo.toString());
+        dest.writeInt(showMode);
     }
 
     public static final Parcelable.Creator<DeviceStat> CREATOR = new Parcelable.Creator<DeviceStat>() {

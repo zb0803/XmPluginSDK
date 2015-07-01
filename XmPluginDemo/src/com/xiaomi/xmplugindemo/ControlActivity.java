@@ -24,7 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ConrolActivity extends XmPluginBaseActivity implements DemoDeviceListener {
+public class ControlActivity extends XmPluginBaseActivity implements DemoDeviceListener {
 
     EditText mFocusHolder;
 

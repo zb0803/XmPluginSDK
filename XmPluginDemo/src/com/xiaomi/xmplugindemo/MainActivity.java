@@ -99,7 +99,7 @@ public class MainActivity extends XmPluginBaseActivity {
                 // ParcelData parcelData = new ParcelData();
                 // parcelData.mData = 10;
                 // intent.putExtra("parcelData", parcelData);
-                startActivity(intent, ConrolActivity.class.getName());
+                startActivity(intent, ControlActivity.class.getName());
                 // if(XmPluginHostApi.instance().getApiLevel()>=3)
                 // mHostActivity.overridePendingTransition(IXmPluginHostActivity.ANIM_SLIDE_IN_TOP,
                 // null);

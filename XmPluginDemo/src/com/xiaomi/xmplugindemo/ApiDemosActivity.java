@@ -2,6 +2,7 @@
 package com.xiaomi.xmplugindemo;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +22,7 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_api_demos);
-
+     
         mHostActivity.setTitleBarPadding(findViewById(R.id.title_bar));
 
         findViewById(R.id.title_bar_return).setOnClickListener(new OnClickListener() {
@@ -67,10 +68,26 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
                         "选择设备").setItems(items, new MLAlertDialog.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        mHostActivity.openDevice(deviceList.get(which).did, null);
-                        XmPluginHostApi.instance().addToLauncher(mPluginPackage,deviceList.get(which).did, null);
+                        mHostActivity.openDevice(deviceList.get(which).did, null);
+                       // XmPluginHostApi.instance().addToLauncher(mPluginPackage,deviceList.get(which).did, null);
                     }
                 }).show();
+            }
+        });
+        
+        
+        findViewById(R.id.testFragment).setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+//                SerializableData sData = new SerializableData();
+//                sData.id = 5;
+//                intent.putExtra("sData", sData);
+                ParcelData pData = new ParcelData();
+                pData.mData = 2;
+                intent.putExtra("pData", pData);
+                startActivity(intent, FragmentActivity.class.getName());
             }
         });
     }

@@ -20,6 +20,26 @@ public interface IXmPluginMessageReceiver {
     public static final int PUSH_MESSAGE = 2;
 
     /**
+     * ApiLevel:6
+     */
+    public static final int MSG_LAUNCHER = 1;
+
+    /**
+     * ApiLevel:6
+     */
+    public static final int MSG_PUSH_MESSAGE = 2;
+
+    /**
+     * ApiLevel:6
+     */
+    public static final int MSG_GET_SCENE_VALUE = 3;
+
+    /**
+     * ApiLevel:6
+     */
+    public static final int MSG_CUSTOM_START = 10000;
+
+    /**
      * 所有插件必须实现该接口，并且在type=LAUNCHER时，启动入口页面 比如下MiTVPageActivity为入口activity
      * switch (type) { case LAUNCHER: {// 启动入口
      * XmPluginHostApi.instance().startActivity(xmPluginPackage, intent,
@@ -38,15 +58,12 @@ public interface IXmPluginMessageReceiver {
      * @return
      */
     public boolean handleMessage(Context context, XmPluginPackage xmPluginPackage, int type,
-            Intent intent,
-            DeviceStat deviceStat);
-    
-    
+            Intent intent, DeviceStat deviceStat);
+
     /**
-     * ApiLevel:2
-     * 功能同上，异步调用完成后，通过callback 返回结果
+     * ApiLevel:2 功能同上，异步调用完成后，通过callback 返回结果
      */
     public boolean handleMessage(Context context, XmPluginPackage xmPluginPackage, int type,
-            Intent intent,
-            DeviceStat deviceStat,MessageCallback callback);
+            Intent intent, DeviceStat deviceStat, MessageCallback callback);
+
 }

@@ -6,14 +6,14 @@ configurations{
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':plug_common')
+    compile project(':mplug_proj:plug_common')
     //compile project(':mplug_proj:plug_lib')
     providedlibs files('libs_ex/plug_lib.jar')
-    providedlibs files('libs_ex/android-support-v4.jar')
+    providedlibs files('libs_ex/android-support-v13.jar')
 }
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 21
     buildToolsVersion "21.1.2"
     applicationVariants.all {
         variant -> variant.javaCompile.classpath += configurations.providedlibs
@@ -40,5 +40,14 @@ android {
         // by a similar customization.
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
+    }
+    
+    signingConfigs {
+        debug {
+            storeFile file('./keystore/mihome-demo.keystore')
+            storePassword 'mihome'
+            keyAlias 'mihome-demo-key'
+            keyPassword 'mihome'
+        }
     }
 }
