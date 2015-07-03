@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xiaomi.xmplugindemo"
-    android:versionCode="42"
-    android:versionName="0.1.42" >
+    android:versionCode="43"
+    android:versionName="0.1.43" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -29,7 +29,7 @@
         <!-- 开发者Id, 必须 -->
         <meta-data
             android:name="MiHomeDeveloperId"
-            android:value="id_890190522" />
+            android:value="id_894148746" />
         <!-- 支持的运行平台,必须 -->
         <meta-data
             android:name="MiHomePlatform"
