@@ -78,6 +78,18 @@ public class DeviceStat implements Parcelable {
         readFromParcel(in);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof DeviceStat))
+            return false;
+        DeviceStat other = (DeviceStat) obj;
+        if (did != null) {
+            return did.equals(other.did);
+        } else {
+            return false;
+        }
+    }
+
     void readFromParcel(Parcel in) {
         did = in.readString();
         name = in.readString();

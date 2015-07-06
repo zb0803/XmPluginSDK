@@ -5,7 +5,7 @@ configurations{
 }
 
 dependencies {
-    providedlibs files('lib_ex/android-support-v4.jar')
+    providedlibs files('lib_ex/android-support-v13.jar')
 //    compile files('lib_ex/android-support-v4.jar')
 }
 

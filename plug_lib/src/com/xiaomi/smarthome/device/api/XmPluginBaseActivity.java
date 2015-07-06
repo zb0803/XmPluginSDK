@@ -479,7 +479,7 @@ public class XmPluginBaseActivity extends FragmentActivity implements IXmPluginA
     }
 
     // 场景加载完成回调
-    public void onSceneLoaded(List<SceneInfo> sceneInfoList) {
+    public void onSceneLoaded() {
 
     }
 

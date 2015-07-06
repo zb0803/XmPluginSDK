@@ -259,7 +259,6 @@ public abstract class XmPluginHostApi {
      * @param value 为Object 可以为int或String或JsonObject
      * @param extra 可以为null
      */
-    @Deprecated
     public abstract void addRecord(String appId, String key, Object value, JSONObject extra);
 
     /**
@@ -857,17 +856,19 @@ public abstract class XmPluginHostApi {
     public abstract boolean bindService(Intent service, XmPluginPackage xmPluginPackage,
             Class activityClass, ServiceConnection conn,
             int flags);
-    
-    /**ApiLevel:6
-     * 把某个设备添加桌面快捷方式
+
+    /**
+     * ApiLevel:6 把某个设备添加桌面快捷方式
+     * 
      * @param xmPluginPackage
      * @param did
      * @param intent
      */
-    public abstract void addToLauncher(XmPluginPackage xmPluginPackage,String did,Intent intent);
-    
-    /**ApiLevel:6
-     * 设置子设备是否在主设备列表显示
+    public abstract void addToLauncher(XmPluginPackage xmPluginPackage, String did, Intent intent);
+
+    /**
+     * ApiLevel:6 设置子设备是否在主设备列表显示
+     * 
      * @param xmPluginPackage
      * @param shownInDeviceList
      * @param did
@@ -879,4 +880,25 @@ public abstract class XmPluginHostApi {
             String did,
             Context context,
             final Callback<Void> callback);
+
+    
+    /** ApiLevel:7 检测当前连接路由器是否是小米路由器
+     * @param routerId
+     * @param callback
+     */
+    public abstract void checkLocalRouterInfo(String routerId,
+            Callback<Void> callback);
+
+    
+    /**ApiLevel:7 返回当前连接路由器是否是小米路由器
+     * @return
+     */
+    public abstract boolean isLocalMiRouter();
+    /**
+     * ApiLevel:7 获取路由器文件下载地址
+     * 
+     * @param url
+     * @return
+     */
+    public abstract String getRouterFileDownloadUrl(String url);
 }
