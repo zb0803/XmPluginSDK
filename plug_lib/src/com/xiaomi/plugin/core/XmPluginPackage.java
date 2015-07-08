@@ -61,8 +61,9 @@ public class XmPluginPackage {
     public IXmPluginMessageReceiver xmPluginMessageReceiver;
 
     /**
-     * ApiLevel:1 AppIcon (请使用线程安全的Getter访问)
+     * ApiLevel:1 AppIcon 可能为null (请使用线程安全的Getter访问)
      */
+    @Deprecated
     public Drawable appIcon;
 
     /**
@@ -84,6 +85,11 @@ public class XmPluginPackage {
      * ApiLevel:6
      */
     private List<String> mModelList;
+
+    /**
+     * ApiLevel:7
+     */
+    private long mPluginId;
 
     /**
      * ApiLevel:6
@@ -110,6 +116,13 @@ public class XmPluginPackage {
      */
     public synchronized void setModelList(List<String> modelList) {
         mModelList = modelList;
+    }
+
+    /**
+     * @hide 隐藏接口(不要调用)
+     */
+    public synchronized void setPluginId(long pluginId) {
+        mPluginId = pluginId;
     }
 
     /**
@@ -192,10 +205,11 @@ public class XmPluginPackage {
     }
 
     /**
-     * ApiLevel:6
+     * ApiLevel:6, 可能为null
      * 
      * @return
      */
+    @Deprecated
     public synchronized Drawable getAppIcon() {
         return appIcon;
     }
@@ -225,6 +239,15 @@ public class XmPluginPackage {
      */
     public synchronized int getVersionCode() {
         return packageVersion;
+    }
+
+    /**
+     * ApiLevel:7
+     * 
+     * @return
+     */
+    public synchronized long getPluginId() {
+        return mPluginId;
     }
 
     /**

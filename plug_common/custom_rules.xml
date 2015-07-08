@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="custom_rules">
 
+    <path id="java.compiler.classpath.path">
+         <fileset dir="libs_ex" includes="*.jar" />
+     </path>
+     <property name="java.compiler.classpath" refid="java.compiler.classpath.path" />
+     
      <!-- 兼容ant的classes.jar和eclipse的plug_common.jar -->
      <target name="-post-compile">
          <copy tofile="./bin/plug_common.jar">

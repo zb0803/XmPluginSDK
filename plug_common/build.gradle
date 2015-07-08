@@ -1,12 +1,22 @@
 apply plugin: 'android-library'
 
+configurations{
+    providedlibs
+}
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
+    providedlibs files('libs_ex/plug_common_lib.jar')
 }
 
 android {
     compileSdkVersion 19
     buildToolsVersion "21.1.2"
+
+	applicationVariants.all {
+        variant -> variant.javaCompile.classpath += configurations.providedlibs
+    }
 
     sourceSets {
         main {

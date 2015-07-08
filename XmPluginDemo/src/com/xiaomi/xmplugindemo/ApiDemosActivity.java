@@ -50,7 +50,7 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
             public void onClick(View v) {
                 MLAlertDialog dialog = new MLAlertDialog.Builder(ApiDemosActivity.this).setMessage(
                         "测试Dialog").setPositiveButton("确定", null).create();
-                dialog.getWindow().setWindowAnimations(R.style.V5_Animation_Dialog);
+//                XmPluginHostApi.instance().setWindowAnimations(dialog);
                 dialog.show();
             }
         });

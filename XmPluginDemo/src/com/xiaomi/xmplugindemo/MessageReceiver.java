@@ -3,10 +3,13 @@ package com.xiaomi.xmplugindemo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 
 import com.xiaomi.plugin.core.XmPluginPackage;
+import com.xiaomi.smarthome.device.api.BaseWidgetView;
 import com.xiaomi.smarthome.device.api.DeviceStat;
 import com.xiaomi.smarthome.device.api.IXmPluginMessageReceiver;
 import com.xiaomi.smarthome.device.api.MessageCallback;
@@ -42,6 +45,7 @@ public class MessageReceiver implements IXmPluginMessageReceiver {
                 } else if ("ScenePush".equals(msgType)) {// 场景消息
                     String event = intent.getStringExtra("event");
                     String extra = intent.getStringExtra("extra");
+                    long time = intent.getLongExtra("time", 0);
                     boolean isNotified = intent.getBooleanExtra("isNotified", false);
                     Log.d(DemoDevice.MODEL, "ScenePush :" + event + "  " + extra);
                     //TODO 处理场景通知
@@ -59,5 +63,12 @@ public class MessageReceiver implements IXmPluginMessageReceiver {
             Intent intent, DeviceStat deviceStat, MessageCallback callback) {
         //TODO 主app调用插件获取数据
         return false;
+    }
+
+    @Override
+    public BaseWidgetView createWidgetView(Context context, LayoutInflater layoutInflater,
+            XmPluginPackage xmPluginPackage, int type, Intent intent, DeviceStat deviceStat) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

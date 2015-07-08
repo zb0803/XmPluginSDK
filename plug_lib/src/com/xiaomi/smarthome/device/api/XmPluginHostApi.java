@@ -2,6 +2,7 @@
 package com.xiaomi.smarthome.device.api;
 
 import android.app.Application;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -901,4 +902,5 @@ public abstract class XmPluginHostApi {
      * @return
      */
     public abstract String getRouterFileDownloadUrl(String url);
+    
 }
