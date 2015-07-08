@@ -14,7 +14,7 @@ android {
     compileSdkVersion 19
     buildToolsVersion "21.1.2"
 
-	applicationVariants.all {
+    libraryVariants.all {
         variant -> variant.javaCompile.classpath += configurations.providedlibs
     }
 
