@@ -902,11 +902,11 @@ public class MLAlertDialog extends Dialog implements DialogInterface {
             }
             dialog.setDismissCallBack(P.mDismissCallBack);
             
-//            try{
-            XmPluginCommonApi.instance().setWindowAnimations(dialog);
-//            }catch(Throwable e){
-//                
-//            }
+			try {
+				XmPluginCommonApi.instance().setWindowAnimations(dialog);
+			} catch (Throwable e) {
+
+			}
             return dialog;
         }
         

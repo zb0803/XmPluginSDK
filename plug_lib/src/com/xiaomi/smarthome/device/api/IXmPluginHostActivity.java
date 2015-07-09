@@ -244,4 +244,17 @@ public interface IXmPluginHostActivity {
      * ApiLevel:7 modeify scene name
      */
     public abstract void modifySceneName(SceneInfo info, AsyncCallback<Void> callback);
+    
+    /**
+     * /** ApiLevel:7 打开菜单,添加传设备did参数，onActivityResult()返回用户点击结果 String selectMenu =
+     * data.getStringExtra("menu");
+     * 
+     * @param menus 自定义菜单列表，在默认菜单之上,点击后推出菜单项
+     * @param intents 自定义菜单列表，在默认菜单之上，点击后打开Intent
+     * @param useDefault true使用默认菜单，false不使用默认菜单
+     * @param requestCode requestCode If >= 0, this code will be returned in
+     *            onActivityResult() when the activity exits.
+     */
+    public abstract void openMoreMenu(String did,ArrayList<String> menus, ArrayList<Intent> intents,
+            boolean useDefault, int requestCode);
 }
