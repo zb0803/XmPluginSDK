@@ -2,11 +2,11 @@
 package com.xiaomi.smarthome.device.api;
 
 import android.app.Application;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Location;
+import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.text.TextUtils;
@@ -882,19 +882,22 @@ public abstract class XmPluginHostApi {
             Context context,
             final Callback<Void> callback);
 
-    
-    /** ApiLevel:7 检测当前连接路由器是否是小米路由器
+    /**
+     * ApiLevel:7 检测当前连接路由器是否是小米路由器
+     * 
      * @param routerId
      * @param callback
      */
     public abstract void checkLocalRouterInfo(String routerId,
             Callback<Void> callback);
 
-    
-    /**ApiLevel:7 返回当前连接路由器是否是小米路由器
+    /**
+     * ApiLevel:7 返回当前连接路由器是否是小米路由器
+     * 
      * @return
      */
     public abstract boolean isLocalMiRouter();
+
     /**
      * ApiLevel:7 获取路由器文件下载地址
      * 
@@ -902,5 +905,13 @@ public abstract class XmPluginHostApi {
      * @return
      */
     public abstract String getRouterFileDownloadUrl(String url);
-    
+
+    /**
+     * ApiLevel:8 页面跳转
+     * 
+     * @param xmPluginPackage
+     * @param uri
+     */
+    public abstract void gotoPage(Context context, XmPluginPackage xmPluginPackage, Uri uri,
+            Callback<Void> callback);
 }

@@ -4,7 +4,6 @@ package com.xiaomi.smarthome.device.api;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 
 import com.xiaomi.plugin.core.XmPluginPackage;
 
@@ -37,14 +36,19 @@ public interface IXmPluginMessageReceiver {
     public static final int MSG_GET_SCENE_VALUE = 3;
 
     /**
+     * ApiLevel:8 页面跳转
+     */
+    public static final int MSG_PAGE_NAVIGATE = 4;
+
+    /**
      * ApiLevel:6
      */
     public static final int MSG_CUSTOM_START = 10000;
-    
+
     /**
      * ApiLevel:7
      */
-    public static final int DEVICE_LIST_MAIN_VIEW = 1;//设备列表界面
+    public static final int DEVICE_LIST_MAIN_VIEW = 1;// 设备列表界面
 
     /**
      * 所有插件必须实现该接口，并且在type=LAUNCHER时，启动入口页面 比如下MiTVPageActivity为入口activity
@@ -72,8 +76,10 @@ public interface IXmPluginMessageReceiver {
      */
     public boolean handleMessage(Context context, XmPluginPackage xmPluginPackage, int type,
             Intent intent, DeviceStat deviceStat, MessageCallback callback);
-    
-    /**ApiLevel:7 创建View给外边使用，如果需要在设备列表中的卡片模式中显示设备view，需要实现，否则返回null
+
+    /**
+     * ApiLevel:7 创建View给外边使用，如果需要在设备列表中的卡片模式中显示设备view，需要实现，否则返回null
+     * 
      * @param context
      * @param xmPluginPackage
      * @param type
@@ -81,7 +87,8 @@ public interface IXmPluginMessageReceiver {
      * @param deviceStat
      * @return
      */
-    public BaseWidgetView createWidgetView(Context context,LayoutInflater layoutInflater, XmPluginPackage xmPluginPackage, int type,
+    public BaseWidgetView createWidgetView(Context context, LayoutInflater layoutInflater,
+            XmPluginPackage xmPluginPackage, int type,
             Intent intent, DeviceStat deviceStat);
 
 }
