@@ -9,7 +9,7 @@ import android.view.View;
 import com.xiaomi.plugin.core.XmPluginPackage;
 
 /**
- * ApiLevel:7
+ * ApiLevel:8
  * 获取插件View
  */
 public abstract class BaseWidgetView {

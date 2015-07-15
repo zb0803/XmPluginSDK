@@ -51,7 +51,7 @@ public interface IXmPluginMessageReceiver {
     public static final int MSG_CUSTOM_START = 10000;
 
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public static final int DEVICE_LIST_MAIN_VIEW = 1;// 设备列表界面
 
