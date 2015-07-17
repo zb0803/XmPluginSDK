@@ -8,29 +8,29 @@ import java.util.ArrayList;
 /**
  * 推荐场景信息类
  *
- * ApiLevel:7
+ * ApiLevel:8
  */
 public class RecommendSceneItem implements Parcelable {
 
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public int mRecommId;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public String mName;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public RemommendSceneCondition[] mRecommendConditionList;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public RemommendSceneAction[] mRecommendActionList;
 
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public static class Key {
         public String mKey;
@@ -48,23 +48,23 @@ public class RecommendSceneItem implements Parcelable {
 
     public static class RemommendSceneCondition {
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String [] mDeviceModels;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mConditionName;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public Key[] mKeys;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mProductId;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public Boolean mAddAllDevice = false;
 
@@ -101,23 +101,23 @@ public class RecommendSceneItem implements Parcelable {
 
     public static class RemommendSceneAction {
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String [] mDeviceModels;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mActionName;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public Key[] mKeys;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mProductId;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public Boolean mAddAllDevice;
 

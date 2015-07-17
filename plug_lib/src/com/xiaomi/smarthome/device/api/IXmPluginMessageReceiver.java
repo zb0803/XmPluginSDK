@@ -41,12 +41,17 @@ public interface IXmPluginMessageReceiver {
     public static final int MSG_PAGE_NAVIGATE = 4;
 
     /**
+     * ApiLevel:8 设备列表状态栏
+     */
+    public static final int MSG_DEVICE_LIST_STATUS = 5;
+
+    /**
      * ApiLevel:6
      */
     public static final int MSG_CUSTOM_START = 10000;
 
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public static final int DEVICE_LIST_MAIN_VIEW = 1;// 设备列表界面
 

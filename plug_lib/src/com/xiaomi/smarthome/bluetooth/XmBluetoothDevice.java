@@ -13,11 +13,11 @@ public class XmBluetoothDevice {
      */
     public int rssi;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public boolean isConnected;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public byte[] scanRecord;
 }

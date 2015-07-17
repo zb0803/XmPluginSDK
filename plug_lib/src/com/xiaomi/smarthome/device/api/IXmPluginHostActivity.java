@@ -210,7 +210,7 @@ public interface IXmPluginHostActivity {
      */
     public abstract void openDevice(String did,Intent intent);
     /**
-     * ApiLevel:7 异步请求回调
+     * ApiLevel:8 异步请求回调
      */
     public abstract class AsyncCallback<T> {
         public abstract void onSuccess(T result);
@@ -218,35 +218,35 @@ public interface IXmPluginHostActivity {
     }
 
     /**
-     * ApiLevel:7 获取当前设备所支持的推荐场景
+     * ApiLevel:8 获取当前设备所支持的推荐场景
      */
     public abstract void getDeviceRecommendScenes(String did, AsyncCallback<List<RecommendSceneItem>> callback);
 
     /**
-     * ApiLevel:7 开始编辑推荐场景
+     * ApiLevel:8 开始编辑推荐场景
      * @param model 当前设备的model
      * @param did 当前设备的did
      */
     public abstract void startEditRecommendScenes(RecommendSceneItem item, String model, String did);
 
     /**
-     * ApiLevel:7 根据did获取场景
+     * ApiLevel:8 根据did获取场景
      * @param did 当前设备的did
      */
     public abstract List<SceneInfo> getSceneByDid(String did);
 
     /**
-     * ApiLevel:7 enable or disable the specific scene
+     * ApiLevel:8 enable or disable the specific scene
      */
     public abstract void setSceneEnabled(SceneInfo info, boolean enable, AsyncCallback<Void> callback);
 
     /**
-     * ApiLevel:7 modeify scene name
+     * ApiLevel:8 modeify scene name
      */
     public abstract void modifySceneName(SceneInfo info, AsyncCallback<Void> callback);
     
     /**
-     * /** ApiLevel:7 打开菜单,添加传设备did参数，onActivityResult()返回用户点击结果 String selectMenu =
+     * /** ApiLevel:8 打开菜单,添加传设备did参数，onActivityResult()返回用户点击结果 String selectMenu =
      * data.getStringExtra("menu");
      * 
      * @param menus 自定义菜单列表，在默认菜单之上,点击后推出菜单项

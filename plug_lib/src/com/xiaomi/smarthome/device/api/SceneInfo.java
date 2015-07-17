@@ -9,13 +9,13 @@ import java.util.List;
 /**
  * 场景信息类
  *
- * ApiLevel:7
+ * ApiLevel:8
  *
  */
 public class SceneInfo implements Parcelable {
 
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public static final int LAUNCH_CLICK = 0;
     public static final int LAUNCH_TIMER = 1;
@@ -57,48 +57,48 @@ public class SceneInfo implements Parcelable {
     }
 
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public int mSceneId;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public int mRecommId;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public String mName;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public boolean mEnable;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public SceneLaunch mLaunch;
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public List<SceneAction> mActions;
 
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public static class SceneLaunch implements Parcelable {
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public int mLaunchType;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mLaunchName;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mDeviceModel;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mEventString;
         public SceneLaunch() {
@@ -126,23 +126,23 @@ public class SceneInfo implements Parcelable {
     }
 
     /**
-     * ApiLevel:7
+     * ApiLevel:8
      */
     public static class SceneAction implements Parcelable{
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mDeviceName;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mDeviceModel;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mActionName;
         /**
-         * ApiLevel:7
+         * ApiLevel:8
          */
         public String mActionString;
         public SceneAction() {
