@@ -4,6 +4,7 @@ package com.xiaomi.xmplugindemo;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -126,10 +127,14 @@ public class MainActivity extends XmPluginBaseActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             // 自定义菜单返回
             if (requestCode == REQUEST_MENUS && data != null) {
                 String selectMenu = data.getStringExtra("menu");
+                if(TextUtils.isEmpty(selectMenu)){
+                    return;
+                }
                 if (selectMenu.equals("ApiDemo-MenuOnResult-分享")) {
                     // 分享微博，微信，米聊
                     mHostActivity

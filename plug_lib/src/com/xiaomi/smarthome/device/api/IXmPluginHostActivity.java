@@ -113,6 +113,7 @@ public interface IXmPluginHostActivity {
      * @param timerName 定时器名称
      * @param timerTitle 定时器标题
      */
+    @Deprecated
     public abstract void startSetTimerList(String deviceId, String onMethod, String onParams,
             String offMethod, String offParams, String timerName, String timerTitle);
 
@@ -257,4 +258,18 @@ public interface IXmPluginHostActivity {
      */
     public abstract void openMoreMenu(String did,ArrayList<String> menus, ArrayList<Intent> intents,
             boolean useDefault, int requestCode);
+
+    /**
+     * ApiLevel: 8
+     * @param deviceId device id
+     * @param onMethod 当on timer时间到的时候执行的action
+     * @param onParams on action的参数
+     * @param offMethod 当off timer时间到的时候执行的action
+     * @param offParams off action参数
+     * @param identify 定时器的identify
+     * @param displayName 定时的名称
+     * @param timerTitle 定时器标题
+     */
+    public void startSetTimerList(String deviceId, String onMethod, String onParams,
+                                  String offMethod, String offParams, String identify,String displayName, String timerTitle);
 }

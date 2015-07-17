@@ -201,6 +201,8 @@ public class BaseDevice {
     }
 
     public void updateDeviceStatus() {
+        DeviceStat deviceStat = XmPluginHostApi.instance().getDeviceByDid(mDeviceStat.did);
+        if(deviceStat!=null)
         mDeviceStat = XmPluginHostApi.instance().getDeviceByDid(mDeviceStat.did);
     }
 
