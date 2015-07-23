@@ -36,6 +36,7 @@ public abstract class BaseWidgetView {
         if (mView == null) {
             mView = onCreateView(mIntent);
         }
+        mDeviceStat = XmPluginHostApi.instance().getDeviceByDid(mDeviceStat.did);
         onRefresh();
         return mView;
     }

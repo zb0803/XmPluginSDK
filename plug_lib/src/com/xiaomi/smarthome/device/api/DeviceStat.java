@@ -66,12 +66,16 @@ public class DeviceStat implements Parcelable {
     /**ApiLevel:6*/
     public int showMode;//是否在设备列表显示
 
+    /**ApiLevel:8*/
+    public String event;
+    
     public DeviceStat() {
         did = "";
         name = "";
         mac = "";
         model = "";
         extrainfo = "";
+        event = "";
     }
 
     public DeviceStat(Parcel in) {
@@ -110,6 +114,7 @@ public class DeviceStat implements Parcelable {
             }
         }
         showMode = in.readInt();
+        event = in.readString();
     }
 
     @Override
@@ -137,6 +142,7 @@ public class DeviceStat implements Parcelable {
         dest.writeBundle(property);
         dest.writeString(propInfo.toString());
         dest.writeInt(showMode);
+        dest.writeString(event);
     }
 
     public static final Parcelable.Creator<DeviceStat> CREATOR = new Parcelable.Creator<DeviceStat>() {
