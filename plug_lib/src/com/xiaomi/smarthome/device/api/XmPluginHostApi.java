@@ -211,6 +211,7 @@ public abstract class XmPluginHostApi {
                             // } else {
                             // result.isOnline = object.optBoolean("isOnline");
                             // }
+                            result.isOnline = object.optBoolean("isOnline");
                             subDeviceList.add(result);
                         }
                         return subDeviceList;
