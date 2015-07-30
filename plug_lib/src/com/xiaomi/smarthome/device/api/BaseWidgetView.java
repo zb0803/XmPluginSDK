@@ -45,6 +45,10 @@ public abstract class BaseWidgetView {
 
     public abstract void onRefresh();
 
+    public abstract void onPause();
+
+    public abstract void onResume();
+
     public abstract void onDestory();
 
 }
