@@ -11,10 +11,9 @@ import java.util.List;
 
 public interface IXmPluginHostActivity {
     public FragmentActivity activity();
-    
+
     /**
-     * ApiLevel:5
-     * 在启动设备更多页时，可以告知更多页该Item是调起Host程序的activity
+     * ApiLevel:5 在启动设备更多页时，可以告知更多页该Item是调起Host程序的activity
      * 具体哪个activity由TARGET_ACTIVITY_IN_HOST_XXX指派
      */
     public static final String KEY_INTENT_TARGET_ACTIVITY_IN_HOST = "target_activity";
@@ -22,7 +21,7 @@ public interface IXmPluginHostActivity {
      * ApiLevel:5
      */
     public static final int TARGET_ACTIVITY_IN_HOST_DEVICE_SCENE = 1;
-    
+
     // 动画类型
     public final String ANIM_SLIDE_IN_LEFT = "slide_in_left";
     public final String ANIM_SLIDE_IN_RIGHT = "slide_in_right";
@@ -163,6 +162,8 @@ public interface IXmPluginHostActivity {
     public void overridePendingTransition(String enterAnim, String exitAnim);
 
     /**
+     * @deprecated
+     * @see #openShareMediaActivity()
      * ApiLevel:3 分享米聊，微信，朋友圈，sina微博，
      * 
      * @param mShareTitle
@@ -181,50 +182,54 @@ public interface IXmPluginHostActivity {
 
     /**
      * ApiLevel:4 刷新新连接进入的特定子设备
-     *
+     * 
      * @param targetModel
      * @param callback
      */
     public void startSearchNewDevice(String targetModel, String did,
-                      DeviceFindCallback callback);
+            DeviceFindCallback callback);
+
     public interface DeviceFindCallback {
         void onDeviceFind(List<DeviceStat> deviceStatList);
     }
 
-    
     /**
      * ApiLevel:4 打开智能场景页
+     * 
      * @param did 设备id
      */
     public abstract void openSceneActivity(String did);
-    
+
     /**
      * ApiLevel:4 是否支持状态栏透明显示
      */
     public abstract boolean isTranslucentStatusbarEnable();
-    
-    
+
     /**
-     * ApiLevel:6
-     * 打开一个设备
+     * ApiLevel:6 打开一个设备
+     * 
      * @param did
      */
-    public abstract void openDevice(String did,Intent intent);
+    public abstract void openDevice(String did, Intent intent);
+
     /**
      * ApiLevel:8 异步请求回调
      */
     public abstract class AsyncCallback<T> {
         public abstract void onSuccess(T result);
+
         public abstract void onFailure(int shError, Object errorInfo);
     }
 
     /**
      * ApiLevel:8 获取当前设备所支持的推荐场景
      */
-    public abstract void getDeviceRecommendScenes(String did, AsyncCallback<List<RecommendSceneItem>> callback);
+    public abstract void getDeviceRecommendScenes(String did,
+            AsyncCallback<List<RecommendSceneItem>> callback);
 
     /**
      * ApiLevel:8 开始编辑推荐场景
+     * 
      * @param model 当前设备的model
      * @param did 当前设备的did
      */
@@ -232,6 +237,7 @@ public interface IXmPluginHostActivity {
 
     /**
      * ApiLevel:8 根据did获取场景
+     * 
      * @param did 当前设备的did
      */
     public abstract List<SceneInfo> getSceneByDid(String did);
@@ -239,16 +245,17 @@ public interface IXmPluginHostActivity {
     /**
      * ApiLevel:8 enable or disable the specific scene
      */
-    public abstract void setSceneEnabled(SceneInfo info, boolean enable, AsyncCallback<Void> callback);
+    public abstract void setSceneEnabled(SceneInfo info, boolean enable,
+            AsyncCallback<Void> callback);
 
     /**
      * ApiLevel:8 modeify scene name
      */
     public abstract void modifySceneName(SceneInfo info, AsyncCallback<Void> callback);
-    
+
     /**
-     * /** ApiLevel:8 打开菜单,添加传设备did参数，onActivityResult()返回用户点击结果 String selectMenu =
-     * data.getStringExtra("menu");
+     * /** ApiLevel:8 打开菜单,添加传设备did参数，onActivityResult()返回用户点击结果 String
+     * selectMenu = data.getStringExtra("menu");
      * 
      * @param menus 自定义菜单列表，在默认菜单之上,点击后推出菜单项
      * @param intents 自定义菜单列表，在默认菜单之上，点击后打开Intent
@@ -256,11 +263,13 @@ public interface IXmPluginHostActivity {
      * @param requestCode requestCode If >= 0, this code will be returned in
      *            onActivityResult() when the activity exits.
      */
-    public abstract void openMoreMenu(String did,ArrayList<String> menus, ArrayList<Intent> intents,
+    public abstract void openMoreMenu(String did, ArrayList<String> menus,
+            ArrayList<Intent> intents,
             boolean useDefault, int requestCode);
 
     /**
      * ApiLevel: 8
+     * 
      * @param deviceId device id
      * @param onMethod 当on timer时间到的时候执行的action
      * @param onParams on action的参数
@@ -271,5 +280,24 @@ public interface IXmPluginHostActivity {
      * @param timerTitle 定时器标题
      */
     public void startSetTimerList(String deviceId, String onMethod, String onParams,
-                                  String offMethod, String offParams, String identify,String displayName, String timerTitle);
+            String offMethod, String offParams, String identify, String displayName,
+            String timerTitle);
+
+    /**
+     * ApiLevel: 9 打开分享页面，分享url或者分享图片
+     * 
+     * @param shareTitle 分享title
+     * @param shareContent 分享文字内容
+     * @param shareUrl 分享链接
+     * @param shareImage 分享图片
+     * @param shareThumbUrl 分享缩略图url
+     * @param thumb 分享缩略图
+     */
+    public void openShareMediaActivity(String shareTitle,
+            String shareContent,
+            String shareUrl,
+            Bitmap shareImage,
+            String shareThumbUrl,
+            Bitmap thumb
+            );
 }
