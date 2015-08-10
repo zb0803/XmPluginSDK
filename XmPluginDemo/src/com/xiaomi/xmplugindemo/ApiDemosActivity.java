@@ -3,6 +3,8 @@ package com.xiaomi.xmplugindemo;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,7 +24,7 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_api_demos);
-     
+
         mHostActivity.setTitleBarPadding(findViewById(R.id.title_bar));
 
         findViewById(R.id.title_bar_return).setOnClickListener(new OnClickListener() {
@@ -50,7 +52,7 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
             public void onClick(View v) {
                 MLAlertDialog dialog = new MLAlertDialog.Builder(ApiDemosActivity.this).setMessage(
                         "测试Dialog").setPositiveButton("确定", null).create();
-//                XmPluginHostApi.instance().setWindowAnimations(dialog);
+                // XmPluginHostApi.instance().setWindowAnimations(dialog);
                 dialog.show();
             }
         });
@@ -69,25 +71,42 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mHostActivity.openDevice(deviceList.get(which).did, null);
-                       // XmPluginHostApi.instance().addToLauncher(mPluginPackage,deviceList.get(which).did, null);
+                        // XmPluginHostApi.instance().addToLauncher(mPluginPackage,deviceList.get(which).did,
+                        // null);
                     }
                 }).show();
             }
         });
-        
-        
+
         findViewById(R.id.testFragment).setOnClickListener(new OnClickListener() {
-            
+
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-//                SerializableData sData = new SerializableData();
-//                sData.id = 5;
-//                intent.putExtra("sData", sData);
+                // SerializableData sData = new SerializableData();
+                // sData.id = 5;
+                // intent.putExtra("sData", sData);
                 ParcelData pData = new ParcelData();
                 pData.mData = 2;
                 intent.putExtra("pData", pData);
                 startActivity(intent, FragmentActivity.class.getName());
+            }
+        });
+
+        findViewById(R.id.testShareUrl).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台", "https://open.home.mi.com/index.html#/intro", null, null, null);
+            }
+        });
+
+        findViewById(R.id.testShareImage).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.welcome);
+                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台", null, bitmap, null, null);
             }
         });
     }

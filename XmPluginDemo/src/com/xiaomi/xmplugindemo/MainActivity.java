@@ -44,37 +44,41 @@ public class MainActivity extends XmPluginBaseActivity {
 
             @Override
             public void onClick(View v) {
-                // 点击菜单返回界面，需要在onActivityResult接收参数
-                ArrayList<String> menus = new ArrayList<String>();
-                menus.add("ApiDemo-MenuOnResult-分享");
-
-                ArrayList<Intent> intents = new ArrayList<Intent>();
-
-                Intent welcomeIntent = mHostActivity.getActivityIntent(null,
-                        WelcomeActivity.class.getName());
-                welcomeIntent.putExtra("menu", "你好, 开发者");
-                intents.add(welcomeIntent);
-
-                Intent intent = mHostActivity.getActivityIntent(null,
-                        SettingActivity.class.getName());
-                intent.putExtra("menu", "设置");
-                intents.add(intent);
-
-                Intent apiDemosIntent = mHostActivity.getActivityIntent(null,
-                        ApiDemosActivity.class.getName());
-                apiDemosIntent.putExtra("menu", "ApiDemo-Others");
-                intents.add(apiDemosIntent);
-
-                // Intent mihomeIntent = new Intent();
-                // mihomeIntent.setClassName("com.xiaomi.smarthome",
-                // "com.xiaomi.smarthome.framework.webview.CommonWebViewActivity");
-                // mihomeIntent.putExtra("url", "http://home.mi.com");
-                // mihomeIntent.putExtra("title", "MiHome");
-                // mihomeIntent.putExtra("menu", "MiHome");
-                // intents.add(mihomeIntent);
-
-                // 设置自定义菜单
-                mHostActivity.openMoreMenu(menus, intents, true, REQUEST_MENUS);
+                //新版更多菜单规则，第一页插件自定义，然后跳转到公共页面
+                Intent intent = new Intent();
+                startActivity(intent, MenuActivity.class.getName());
+                
+//                // 点击菜单返回界面，需要在onActivityResult接收参数
+//                ArrayList<String> menus = new ArrayList<String>();
+//                menus.add("ApiDemo-MenuOnResult-分享");
+//
+//                ArrayList<Intent> intents = new ArrayList<Intent>();
+//
+//                Intent welcomeIntent = mHostActivity.getActivityIntent(null,
+//                        WelcomeActivity.class.getName());
+//                welcomeIntent.putExtra("menu", "你好, 开发者");
+//                intents.add(welcomeIntent);
+//
+//                Intent intent = mHostActivity.getActivityIntent(null,
+//                        SettingActivity.class.getName());
+//                intent.putExtra("menu", "设置");
+//                intents.add(intent);
+//
+//                Intent apiDemosIntent = mHostActivity.getActivityIntent(null,
+//                        ApiDemosActivity.class.getName());
+//                apiDemosIntent.putExtra("menu", "ApiDemo-Others");
+//                intents.add(apiDemosIntent);
+//
+//                // Intent mihomeIntent = new Intent();
+//                // mihomeIntent.setClassName("com.xiaomi.smarthome",
+//                // "com.xiaomi.smarthome.framework.webview.CommonWebViewActivity");
+//                // mihomeIntent.putExtra("url", "http://home.mi.com");
+//                // mihomeIntent.putExtra("title", "MiHome");
+//                // mihomeIntent.putExtra("menu", "MiHome");
+//                // intents.add(mihomeIntent);
+//
+//                // 设置自定义菜单
+//                mHostActivity.openMoreMenu(menus, intents, true, REQUEST_MENUS);
             }
         });
 

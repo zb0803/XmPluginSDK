@@ -120,5 +120,10 @@
 
     <color name="list_bg_line">#ffc0c0c1</color>
     <color name="list_bg_color">#ffefeff0</color>
+    <color name="common_white_list_bg_pressed_color">#efeff0</color>
+    <color name="divider_line_color">#e0e0e0</color>
+    <!-- setting color start -->
+    <color name="setting_item_title_text_color">#c1c1c1</color>
+    <color name="setting_item_detail_text_color">#333333</color>
 
 </resources>
