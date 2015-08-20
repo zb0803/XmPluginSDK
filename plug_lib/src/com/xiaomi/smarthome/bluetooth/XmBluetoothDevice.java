@@ -20,4 +20,9 @@ public class XmBluetoothDevice {
      * ApiLevel:8
      */
     public byte[] scanRecord;
+
+    /**
+     * ApiLevel:10
+     */
+    public int deviceType;
 }

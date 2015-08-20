@@ -46,6 +46,16 @@ public interface IXmPluginMessageReceiver {
     public static final int MSG_DEVICE_LIST_STATUS = 5;
 
     /**
+     * ApiLevel:10 系统蓝牙广播ACL_CONNECTED
+     */
+    public static final int MSG_BROADCAST_BLUETOOTH_DEVICE_ACTION_ACL_CONNECTED = 6;
+
+    /**
+     * ApiLevel:10 系统蓝牙广播ACL_DISCONNECTED
+     */
+    public static final int MSG_BROADCAST_BLUETOOTH_DEVICE_ACTION_ACL_DISCONNECTED = 7;
+
+    /**
      * ApiLevel:6
      */
     public static final int MSG_CUSTOM_START = 10000;
