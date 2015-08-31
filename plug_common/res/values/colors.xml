@@ -112,9 +112,11 @@
     <drawable name="transparent">#00ffffff</drawable>
 
     <color name="transparent">#00000000</color>
-    <color name="title_bar_text_color">#FF606060</color>
+    <color name="title_bar_text_color">#cc000000</color>
     <color name="title_bar_text_color_white">#FFFFFFFF</color>
     <color name="title_bar_text_color_black">#FF000000</color>
+    <color name="sub_title_bar_text_color">#80000000</color>
+    <color name="sub_title_bar_text_color_white">#80FFFFFF</color>
 
     <drawable name="common_list_item_pressed">#ff3fb57d</drawable>
 
@@ -125,5 +127,10 @@
     <!-- setting color start -->
     <color name="setting_item_title_text_color">#c1c1c1</color>
     <color name="setting_item_detail_text_color">#333333</color>
+    
+     <!-- dialog -->
+    <color name="dialog_bg">#fff8f8f8</color>
+    <color name="dialog_title_txt_color">#cc000000</color>
+    <color name="dialog_sub_title_txt_color">#80000000</color>
 
 </resources>

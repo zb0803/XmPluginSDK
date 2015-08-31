@@ -29,12 +29,25 @@ public abstract class XmBluetoothSearchManager {
          * ApiLevel:5
          */
         public int handlerType;
+        
+        /**
+         * ApiLevel:10
+         */
+        public long scanTime;
 
         /**
          * ApiLevel:5
          */
         public BluetoothHandler(int handlerType) {
             this.handlerType = handlerType;
+        }
+        
+        /**
+         * ApiLevel:10
+         */
+        public BluetoothHandler(int handlerType, long scanTime) {
+            this.handlerType = handlerType;
+            this.scanTime = scanTime;
         }
 
         /**
@@ -69,5 +82,10 @@ public abstract class XmBluetoothSearchManager {
      * ApiLevel:5
      */
     public abstract void stopScanBluetooth(BluetoothHandler handler);
+    
+    /**
+     * ApiLevel:10
+     */
+    public abstract void startScanBluetoothImmediately(BluetoothHandler handler);
 
 }

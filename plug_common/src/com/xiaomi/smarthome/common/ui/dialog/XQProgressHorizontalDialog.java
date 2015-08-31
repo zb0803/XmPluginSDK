@@ -19,7 +19,7 @@ public class XQProgressHorizontalDialog extends MLAlertDialog {
 	private ProgressBar mDeterminateProgress;
 	private TextView mProgressMessage;
 	private TextView mProgressPercent;
-	private TextView mProgressNumber;
+//	private TextView mProgressNumber;
 
 	private CharSequence mMessage = null;
 	private String mProgressNumberFormat;
@@ -61,7 +61,7 @@ public class XQProgressHorizontalDialog extends MLAlertDialog {
 		mDeterminateProgress = (ProgressBar) view.findViewById(R.id.progress);
 		mProgressPercent = (TextView) view.findViewById(R.id.progress_percent);
 		mProgressMessage = (TextView) view.findViewById(R.id.progress_message);
-		mProgressNumber = (TextView) view.findViewById(R.id.progress_number);
+//		mProgressNumber = (TextView) view.findViewById(R.id.progress_number);
 		setView(view);
 
 		if (mMessage != null) {
@@ -84,11 +84,11 @@ public class XQProgressHorizontalDialog extends MLAlertDialog {
 		} else {
 			mProgressPercent.setText("");
 		}
-		if (max > 1) {
-			mProgressNumber.setText("" + (progress/1024) + "K/" + (max/1024)+"K");
-		} else {
-			mProgressNumber.setText("");
-		}
+//		if (max > 1) {
+//			mProgressNumber.setText("" + (progress/1024) + "K/" + (max/1024)+"K");
+//		} else {
+//			mProgressNumber.setText("");
+//		}
 	}
 
 	public int getMax() {

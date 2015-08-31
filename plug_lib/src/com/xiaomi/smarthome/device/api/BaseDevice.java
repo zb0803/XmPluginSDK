@@ -12,6 +12,16 @@ import java.util.ArrayList;
  * 抽象设备基类 </br> 插件设备继承该类，并完成具体设备的操作逻辑
  */
 public class BaseDevice {
+    private static int PERMISSION_OWNER = 0x10;
+
+    private static int PERMISSION_FAMILY = 0x08;
+
+    private static int PERMISSION_SHARE = 0x04;
+
+    private static int PERMISSION_NONE = 0xFF10;
+
+    private static int PERMISSION_NONE_MASK = 0x1E;
+
     protected DeviceStat mDeviceStat;
     ArrayList<WeakReference<StateChangedListener>> mStateChangedListeners = new ArrayList<WeakReference<StateChangedListener>>();
 
@@ -192,8 +202,8 @@ public class BaseDevice {
     }
 
     /**
-     * 是否是绑定设备
-     * 
+     * @deprecated
+     * @see #isBinded2 是否是绑定设备
      * @return
      */
     public boolean isBinded() {
@@ -202,8 +212,8 @@ public class BaseDevice {
 
     public void updateDeviceStatus() {
         DeviceStat deviceStat = XmPluginHostApi.instance().getDeviceByDid(mDeviceStat.did);
-        if(deviceStat!=null)
-        mDeviceStat = XmPluginHostApi.instance().getDeviceByDid(mDeviceStat.did);
+        if (deviceStat != null)
+            mDeviceStat = deviceStat;
     }
 
     public String getToken() {
@@ -213,4 +223,43 @@ public class BaseDevice {
     public DeviceStat deviceStat() {
         return mDeviceStat;
     }
+
+    /**
+     * ApiLevel:10 是否主人设备
+     * 
+     * @return
+     */
+    public boolean isOwner() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_OWNER) != 0;
+    }
+
+    /**
+     * ApiLevel:10 是否家庭设备
+     * 
+     * @return
+     */
+    public boolean isFamily() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_FAMILY) != 0;
+    }
+
+    /**
+     * ApiLevel:10 是否是分享权限
+     * 
+     * @return
+     */
+    public boolean isShared() {
+        return ((mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_SHARE) != 0)
+                // 电视必须检查ownerName
+                && !TextUtils.isEmpty(mDeviceStat.ownerName);
+    }
+
+    /**
+     * ApiLevel:10 是否绑定设备，无论哪种权限，主人，分享，家庭都算
+     * 
+     * @return
+     */
+    public boolean isBinded2() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK) != 0;
+    }
+
 }

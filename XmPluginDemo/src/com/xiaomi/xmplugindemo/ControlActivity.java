@@ -12,11 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.xiaomi.smarthome.device.api.BaseDevice;
+import com.xiaomi.smarthome.device.api.BaseDevice.StateChangedListener;
 import com.xiaomi.smarthome.device.api.Callback;
 import com.xiaomi.smarthome.device.api.Parser;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 import com.xiaomi.smarthome.device.api.XmPluginHostApi;
-import com.xiaomi.xmplugindemo.DemoDevice.DemoDeviceListener;
 import com.xiaomi.xmplugindemo.widget.MyEditText;
 import com.xiaomi.xmplugindemo.widget.MyEditText.MyEditTextListener;
 
@@ -24,7 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ControlActivity extends XmPluginBaseActivity implements DemoDeviceListener {
+public class ControlActivity extends XmPluginBaseActivity implements StateChangedListener {
 
     EditText mFocusHolder;
 
@@ -120,7 +121,7 @@ public class ControlActivity extends XmPluginBaseActivity implements DemoDeviceL
 
         clearAllFocus();
 
-        mDevice.registerListener(this);
+        mDevice.addStateChangedListener(this);
 
         getRGB();
     }
@@ -129,7 +130,7 @@ public class ControlActivity extends XmPluginBaseActivity implements DemoDeviceL
     public void onDestroy() {
         super.onDestroy();
 
-        mDevice.unregisterListener(this);
+        mDevice.removeStateChangedListener(this);
     }
 
     private void clearAllFocus() {
@@ -183,7 +184,7 @@ public class ControlActivity extends XmPluginBaseActivity implements DemoDeviceL
 
                     @Override
                     public void onSuccess(Boolean result) {
-                        mDevice.setRGB(rgb);
+                        mDevice.set_rgb(rgb,null);
                     }
 
                     @Override
@@ -201,7 +202,7 @@ public class ControlActivity extends XmPluginBaseActivity implements DemoDeviceL
 
                     @Override
                     public void onSuccess(Integer rgb) {
-                        mDevice.setRGB(rgb);
+//                        mDevice.set_rgb(rgb,null);
                     }
 
                     @Override
@@ -247,8 +248,9 @@ public class ControlActivity extends XmPluginBaseActivity implements DemoDeviceL
         mColorBoard.setBackgroundColor(Color.argb(255, showR, showG, showB));
     }
 
+
     @Override
-    public void onStatusUpdated() {
+    public void onStateChanged(BaseDevice device) {
         refreshUI();
     }
 }

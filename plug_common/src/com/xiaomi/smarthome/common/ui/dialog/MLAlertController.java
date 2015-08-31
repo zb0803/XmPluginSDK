@@ -125,7 +125,7 @@ public class MLAlertController {
     private int mAlertDialogLayout;
 
     private int mListLayout;
-    
+
     private int mListLayoutWithTitle;
 
     private int mMultiChoiceItemLayout;
@@ -138,11 +138,11 @@ public class MLAlertController {
     private int mGravity;
 
     private Handler mHandler;
-    
+
     private boolean mTransplantBg = false;
 
-    private boolean mAutoDismiss = true; //对话框在点击按钮之后是否自动消失
-    
+    private boolean mAutoDismiss = true; // 对话框在点击按钮之后是否自动消失
+
     private boolean mCustomBgTransplant = false;
 
     View.OnClickListener mButtonHandler = new View.OnClickListener() {
@@ -159,8 +159,9 @@ public class MLAlertController {
                 m.sendToTarget();
             }
 
-            if(mAutoDismiss) {
-                // Post a message so we dismiss after the above handlers are executed
+            if (mAutoDismiss) {
+                // Post a message so we dismiss after the above handlers are
+                // executed
                 mHandler.obtainMessage(ButtonHandler.MSG_DISMISS_DIALOG, mDialogInterface)
                         .sendToTarget();
             }
@@ -276,13 +277,14 @@ public class MLAlertController {
         mView = view;
         mViewSpacingSpecified = false;
     }
-    
+
     public void setCustomTransplant(boolean b) {
         mCustomBgTransplant = b;
     }
 
     /**
-     * Set the view to display in the dialog along with the spacing around that view
+     * Set the view to display in the dialog along with the spacing around that
+     * view
      */
     public void setView(View view, int viewSpacingLeft, int viewSpacingTop, int viewSpacingRight,
             int viewSpacingBottom) {
@@ -295,13 +297,17 @@ public class MLAlertController {
     }
 
     /**
-     * Sets a click listener or a message to be sent when the button is clicked. You only need to pass one of
-     * {@code listener} or {@code msg}.
-     *
-     * @param whichButton Which button, can be one of {@link android.content.DialogInterface#BUTTON_POSITIVE},
-     *            {@link android.content.DialogInterface#BUTTON_NEGATIVE}, or {@link android.content.DialogInterface#BUTTON_NEUTRAL}
+     * Sets a click listener or a message to be sent when the button is clicked.
+     * You only need to pass one of {@code listener} or {@code msg}.
+     * 
+     * @param whichButton Which button, can be one of
+     *            {@link android.content.DialogInterface#BUTTON_POSITIVE},
+     *            {@link android.content.DialogInterface#BUTTON_NEGATIVE}, or
+     *            {@link android.content.DialogInterface#BUTTON_NEUTRAL}
      * @param text The text to display in positive button.
-     * @param listener The {@link android.content.DialogInterface.OnClickListener} to use.
+     * @param listener The
+     *            {@link android.content.DialogInterface.OnClickListener} to
+     *            use.
      * @param msg The {@link android.os.Message} to be sent when clicked.
      */
     public void setButton(int whichButton, CharSequence text,
@@ -329,8 +335,9 @@ public class MLAlertController {
 
     /**
      * Set resId to 0 if you don't want an icon.
-     *
-     * @param resId the resourceId of the drawable to use as the icon or 0 if you don't want an icon.
+     * 
+     * @param resId the resourceId of the drawable to use as the icon or 0 if
+     *            you don't want an icon.
      */
     public void setIcon(int resId) {
         mIconId = resId;
@@ -379,7 +386,8 @@ public class MLAlertController {
             "UnusedDeclaration"
     })
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_MENU && mListView != null && mListView.getVisibility() == View.VISIBLE) {
+        if (keyCode == KeyEvent.KEYCODE_MENU && mListView != null
+                && mListView.getVisibility() == View.VISIBLE) {
             this.mDialogInterface.dismiss();
         }
         return mScrollView != null && mScrollView.executeKeyEvent(event);
@@ -407,14 +415,14 @@ public class MLAlertController {
 
         FrameLayout customPanel = (FrameLayout) mWindow.findViewById(R.id.customPanel);
         if (mView != null) {
-            //自定义dialog透明背景
-        	//mWindow.findViewById(R.id.parentPanel).setBackgroundColor(mContext.getResources().getColor(android.R.color.transparent));
+            // 自定义dialog透明背景
+            // mWindow.findViewById(R.id.parentPanel).setBackgroundColor(mContext.getResources().getColor(android.R.color.transparent));
             FrameLayout custom = (FrameLayout) mWindow.findViewById(R.id.custom);
             custom.addView(mView);
             if (mViewSpacingSpecified) {
                 custom.setPadding(mViewSpacingLeft, mViewSpacingTop, mViewSpacingRight,
                         mViewSpacingBottom);
-                if(mCustomBgTransplant)
+                if (mCustomBgTransplant)
                     mTransplantBg = true;
             }
             if (mListView != null) {
@@ -423,29 +431,34 @@ public class MLAlertController {
         } else {
             customPanel.setVisibility(View.GONE);
         }
-        
-        if(mTransplantBg) {
-        	mWindow.findViewById(R.id.parentPanel).setBackgroundColor(mContext.getResources().getColor(android.R.color.transparent));
+
+        if (mTransplantBg) {
+            mWindow.findViewById(R.id.parentPanel).setBackgroundColor(
+                    mContext.getResources().getColor(android.R.color.transparent));
         } else {
-        	mWindow.findViewById(R.id.parentPanel).setBackgroundColor(0xffffffff);
+//            mWindow.findViewById(R.id.parentPanel).setBackgroundColor(0xffffffff);
         }
 
-        if(mListView != null){
+        if (mListView != null) {
             // Listview有分割线divider，因此header和listview需要显示分割线
             mWindow.findViewById(R.id.title_divider_line).setVisibility(View.VISIBLE);
+            mWindow.findViewById(R.id.title_divider_line_bottom).setVisibility(View.VISIBLE);
         } else {
             mWindow.findViewById(R.id.title_divider_line).setVisibility(View.GONE);
+            mWindow.findViewById(R.id.title_divider_line_bottom).setVisibility(View.GONE);
         }
         /**
          * Add margin top for the button panel if we have not any panel
          */
         if (topPanel.getVisibility() == View.GONE && contentPanel.getVisibility() == View.GONE
                 && customPanel.getVisibility() == View.GONE && hasButtons) {
-            buttonPanel.setPadding(buttonPanel.getPaddingLeft(), buttonPanel.getPaddingBottom(), buttonPanel.getPaddingRight(), buttonPanel.getPaddingBottom());
+            buttonPanel.setPadding(buttonPanel.getPaddingLeft(), buttonPanel.getPaddingBottom(),
+                    buttonPanel.getPaddingRight(), buttonPanel.getPaddingBottom());
         }
 
         /*
-         * Only display the divider if we have a title and a custom view or a message.
+         * Only display the divider if we have a title and a custom view or a
+         * message.
          */
         if (hasTitle) {
             // View divider = null;
@@ -485,8 +498,9 @@ public class MLAlertController {
                 mTitleView = (TextView) mWindow.findViewById(R.id.alertTitle);
                 mTitleView.setText(mTitle);
                 /*
-                 * Do this last so that if the user has supplied any icons we use them instead of the default ones. If
-                 * the user has specified 0 then make it disappear.
+                 * Do this last so that if the user has supplied any icons we
+                 * use them instead of the default ones. If the user has
+                 * specified 0 then make it disappear.
                  */
                 if (mIconId > 0) {
                     mIconView.setImageResource(mIconId);
@@ -494,7 +508,8 @@ public class MLAlertController {
                     mIconView.setImageDrawable(mIcon);
                 } else if (mIconId == 0) {
                     /*
-                     * Apply the padding from the icon to ensure the title is aligned correctly.
+                     * Apply the padding from the icon to ensure the title is
+                     * aligned correctly.
                      */
                     mTitleView.setPadding(mIconView.getPaddingLeft(),
                             mIconView.getPaddingTop(),
@@ -600,79 +615,86 @@ public class MLAlertController {
             View customPanel, boolean hasButtons, boolean hasTitle,
             View buttonPanel) {
 
-        /* Get all the different background required */
-        int fullDark = mContext.getResources().getColor(android.R.color.transparent);
-        int topDark = mContext.getResources().getColor(android.R.color.transparent);
-        int centerDark = mContext.getResources().getColor(android.R.color.transparent);
-        int bottomDark = mContext.getResources().getColor(android.R.color.transparent);
-        int fullBright = mContext.getResources().getColor(android.R.color.transparent);
-        int topBright = mContext.getResources().getColor(android.R.color.transparent);
-        int centerBright = mContext.getResources().getColor(android.R.color.transparent);
-        int bottomBright = mContext.getResources().getColor(android.R.color.transparent);
-        int bottomMedium = mContext.getResources().getColor(android.R.color.transparent);
+        if (mTransplantBg) {
+            /* Get all the different background required */
+            int fullDark = mContext.getResources().getColor(android.R.color.transparent);
+            int topDark = mContext.getResources().getColor(android.R.color.transparent);
+            int centerDark = mContext.getResources().getColor(android.R.color.transparent);
+            int bottomDark = mContext.getResources().getColor(android.R.color.transparent);
+            int fullBright = mContext.getResources().getColor(android.R.color.transparent);
+            int topBright = mContext.getResources().getColor(android.R.color.transparent);
+            int centerBright = mContext.getResources().getColor(android.R.color.transparent);
+            int bottomBright = mContext.getResources().getColor(android.R.color.transparent);
+            int bottomMedium = mContext.getResources().getColor(android.R.color.transparent);
 
-        /*
-         * We now set the background of all of the sections of the alert. First collect together each section that is
-         * being displayed along with whether it is on a light or dark background, then run through them setting their
-         * backgrounds. This is complicated because we need to correctly use the full, top, middle, and bottom graphics
-         * depending on how many views they are and where they appear.
-         */
+            /*
+             * We now set the background of all of the sections of the alert.
+             * First collect together each section that is being displayed along
+             * with whether it is on a light or dark background, then run
+             * through them setting their backgrounds. This is complicated
+             * because we need to correctly use the full, top, middle, and
+             * bottom graphics depending on how many views they are and where
+             * they appear.
+             */
 
-        View[] views = new View[4];
-        boolean[] light = new boolean[4];
-        View lastView = null;
-        boolean lastLight = false;
-        int pos = 0;
-        if (hasTitle) {
-            views[pos] = topPanel;
-            light[pos] = false;
+            View[] views = new View[4];
+            boolean[] light = new boolean[4];
+            View lastView = null;
+            boolean lastLight = false;
+            int pos = 0;
+            if (hasTitle) {
+                views[pos] = topPanel;
+                light[pos] = false;
+                pos++;
+            }
+            /*
+             * The contentPanel displays either a custom text message or a
+             * ListView. If it's text we should use the dark background for
+             * ListView we should use the light background. If neither are there
+             * the contentPanel will be hidden so set it as null.
+             */
+            views[pos] = (contentPanel.getVisibility() == View.GONE)
+                    ? null : contentPanel;
+            light[pos] = mListView != null;
             pos++;
-        }
-        /*
-         * The contentPanel displays either a custom text message or a ListView. If it's text we should use the dark
-         * background for ListView we should use the light background. If neither are there the contentPanel will be
-         * hidden so set it as null.
-         */
-        views[pos] = (contentPanel.getVisibility() == View.GONE)
-                ? null : contentPanel;
-        light[pos] = mListView != null;
-        pos++;
-        if (customPanel != null) {
-            views[pos] = customPanel;
-            light[pos] = mForceInverseBackground;
-            pos++;
-        }
-        if (hasButtons) {
-            views[pos] = buttonPanel;
-            light[pos] = true;
-        }
-        boolean setView = false;
-        for (pos = 0; pos < views.length; pos++) {
-            View v = views[pos];
-            if (v == null) {
-                continue;
+            if (customPanel != null) {
+                views[pos] = customPanel;
+                light[pos] = mForceInverseBackground;
+                pos++;
+            }
+            if (hasButtons) {
+                views[pos] = buttonPanel;
+                light[pos] = true;
+            }
+            boolean setView = false;
+            for (pos = 0; pos < views.length; pos++) {
+                View v = views[pos];
+                if (v == null) {
+                    continue;
+                }
+                if (lastView != null) {
+                    if (!setView) {
+                        lastView.setBackgroundResource(lastLight ? topBright : topDark);
+                    } else {
+                        lastView.setBackgroundResource(lastLight ? centerBright : centerDark);
+                    }
+                    setView = true;
+                }
+                lastView = v;
+                lastLight = light[pos];
             }
             if (lastView != null) {
-                if (!setView) {
-                    lastView.setBackgroundResource(lastLight ? topBright : topDark);
-                } else {
-                    lastView.setBackgroundResource(lastLight ? centerBright : centerDark);
-                }
-                setView = true;
-            }
-            lastView = v;
-            lastLight = light[pos];
-        }
-        if (lastView != null) {
-            if (setView) {
+                if (setView) {
 
-                /*
-                 * ListViews will use the Bright background but buttons use the Medium background.
-                 */
-                lastView.setBackgroundResource(
-                        lastLight ? (hasButtons ? bottomMedium : bottomBright) : bottomDark);
-            } else {
-                lastView.setBackgroundResource(lastLight ? fullBright : fullDark);
+                    /*
+                     * ListViews will use the Bright background but buttons use
+                     * the Medium background.
+                     */
+                    lastView.setBackgroundResource(
+                            lastLight ? (hasButtons ? bottomMedium : bottomBright) : bottomDark);
+                } else {
+                    lastView.setBackgroundResource(lastLight ? fullBright : fullDark);
+                }
             }
         }
         if ((mListView != null) && (mAdapter != null)) {
@@ -749,13 +771,14 @@ public class MLAlertController {
         public boolean mCustomBgTransplant = false;
 
         /**
-         * Interface definition for a callback to be invoked before the ListView will be bound to an adapter.
+         * Interface definition for a callback to be invoked before the ListView
+         * will be bound to an adapter.
          */
         public interface OnPrepareListViewListener {
 
             /**
              * Called before the ListView is bound to an adapter.
-             *
+             * 
              * @param listView The ListView that will be shown in the dialog.
              */
             void onPrepareListView(ListView listView);
@@ -803,11 +826,11 @@ public class MLAlertController {
             // adapter or a cursor
             dialog.mTransplantBg = false;
             if ((mItems != null) || (mCursor != null) || (mAdapter != null)) {
-            	if(dialog.mGravity == Gravity.CENTER) {
-            		createCenterListView(dialog);
-            	} else {
+                if (dialog.mGravity == Gravity.CENTER) {
+                    createCenterListView(dialog);
+                } else {
                     createListView(dialog);
-            	}
+                }
 
             }
             if (mView != null) {
@@ -821,11 +844,12 @@ public class MLAlertController {
             dialog.setAudoDismiss(mAutoDismiss);
             dialog.setCustomTransplant(mCustomBgTransplant);
         }
-        
+
         private void createCenterListView(final MLAlertController dialog) {
             final LinearLayout customView = (LinearLayout)
                     mInflater.inflate(dialog.mListLayoutWithTitle, null);
-            final RecycleListView listView = (RecycleListView) customView.findViewById(R.id.select_dialog_listview);
+            final RecycleListView listView = (RecycleListView) customView
+                    .findViewById(R.id.select_dialog_listview);
             ListAdapter adapter;
             int layout = R.layout.ml_center_item;
             if (mCursor == null) {
@@ -839,17 +863,18 @@ public class MLAlertController {
                                 R.id.text1
                         });
             }
-            
-            if(mCustomTitle != null) {
-            	((TextView)(customView.findViewById(R.id.title))).setText(mCustomTitle);
+
+            if (mCustomTitle != null) {
+                ((TextView) (customView.findViewById(R.id.title))).setText(mCustomTitle);
             }
-            
+
             if (mOnPrepareListViewListener != null) {
                 mOnPrepareListViewListener.onPrepareListView(listView);
             }
 
             /*
-             * Don't directly set the adapter on the ListView as we might want to add a footer to the ListView later.
+             * Don't directly set the adapter on the ListView as we might want
+             * to add a footer to the ListView later.
              */
             dialog.mAdapter = adapter;
             listView.setAdapter(adapter);
@@ -880,7 +905,7 @@ public class MLAlertController {
             if (mOnItemSelectedListener != null) {
                 listView.setOnItemSelectedListener(mOnItemSelectedListener);
             }
-            
+
             if (mOnItemSelectedListener != null) {
                 listView.setOnItemSelectedListener(mOnItemSelectedListener);
             }
@@ -890,7 +915,7 @@ public class MLAlertController {
             } else if (mIsMultiChoice) {
                 listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
             }
-            
+
             listView.mRecycleOnMeasure = mRecycleOnMeasure;
             dialog.mView = customView;
             dialog.mTransplantBg = true;
@@ -966,7 +991,8 @@ public class MLAlertController {
             }
 
             /*
-             * Don't directly set the adapter on the ListView as we might want to add a footer to the ListView later.
+             * Don't directly set the adapter on the ListView as we might want
+             * to add a footer to the ListView later.
              */
             dialog.mAdapter = adapter;
             dialog.mCheckedItem = mCheckedItem;

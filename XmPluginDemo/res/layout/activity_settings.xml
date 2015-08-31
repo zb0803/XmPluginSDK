@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF" >
 
-    <include layout="@layout/title_bar_black" />
+    <include layout="@layout/sub_title_bar_black" />
 
 
 </RelativeLayout>

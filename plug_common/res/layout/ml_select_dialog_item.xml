@@ -3,7 +3,7 @@
     android:id="@+id/text1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="@dimen/menu_item_min_height"
+    android:minHeight="@dimen/alertdialog_item_height"
     android:background="@drawable/common_center_item_bg"
     android:ellipsize="marquee"
     android:paddingLeft="@dimen/listitem_2_padding_left"

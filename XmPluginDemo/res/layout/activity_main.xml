@@ -5,7 +5,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical" >
 
-    <include layout="@layout/title_bar_transparent_black" />
+    <include layout="@layout/title_bar_black" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,6 +26,15 @@
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
+             <TextView
+                android:id="@+id/info"
+                android:layout_below="@+id/version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
