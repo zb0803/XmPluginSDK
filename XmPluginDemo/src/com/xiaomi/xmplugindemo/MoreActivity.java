@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import com.xiaomi.smarthome.device.api.IXmPluginHostActivity;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 
 public class MoreActivity extends XmPluginBaseActivity {
@@ -47,7 +48,8 @@ public class MoreActivity extends XmPluginBaseActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(null, SettingActivity.class.getName());
+               startActivity(null, SettingActivity.class.getName());
+               mHostActivity.overridePendingTransition(IXmPluginHostActivity.ANIM_SLIDE_IN_TOP, IXmPluginHostActivity.ANIM_SLIDE_OUT_BOTTOM);
             }
         });
         findViewById(R.id.others).setOnClickListener(new OnClickListener() {

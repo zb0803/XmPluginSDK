@@ -63,6 +63,8 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
                 finish();
             }
         });
+        
+        findViewById(R.id.title_bar_redpoint).setVisibility(View.VISIBLE);
 
         findViewById(R.id.title_bar_more).setOnClickListener(new OnClickListener() {
 
