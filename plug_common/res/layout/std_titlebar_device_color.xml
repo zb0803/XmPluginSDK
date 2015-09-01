@@ -37,8 +37,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/sub_title_bar_text_color_white"
-        android:textSize="@dimen/sub_title_bar_text_size"
-        android:visibility="gone" />
+        android:textSize="@dimen/sub_title_bar_text_size" />
 
     <ImageView
         android:id="@+id/title_bar_more"
@@ -48,8 +47,7 @@
         android:paddingLeft="@dimen/std_titlebar_margin_left_right"
         android:paddingRight="@dimen/std_titlebar_margin_left_right"
         android:scaleType="center"
-        android:src="@drawable/std_tittlebar_main_device_more_white"
-        android:visibility="gone" />
+        android:src="@drawable/std_tittlebar_main_device_more_white" />
 
     <ImageView
         android:id="@+id/title_bar_redpoint"
