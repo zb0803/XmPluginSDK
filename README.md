@@ -13,6 +13,47 @@
 
 4.请更新插件，使用新的plug_common库重新build插件
 
+5.添加家庭分享关系
+
+```
+    /**
+     * ApiLevel:10 是否主人设备
+     * 
+     * @return
+     */
+    public boolean isOwner() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_OWNER) != 0;
+    }
+
+    /**
+     * ApiLevel:10 是否家庭设备
+     * 
+     * @return
+     */
+    public boolean isFamily() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_FAMILY) != 0;
+    }
+
+    /**
+     * ApiLevel:10 是否是分享权限
+     * 
+     * @return
+     */
+    public boolean isShared() {
+        return ((mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_SHARE) != 0)
+                // 电视必须检查ownerName
+                && !TextUtils.isEmpty(mDeviceStat.ownerName);
+    }
+
+    /**
+     * ApiLevel:10 是否绑定设备，无论哪种权限，主人，分享，家庭都算
+     * 
+     * @return
+     */
+    public boolean isBinded2() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK) != 0;
+    }
+```
 
 ## 插件调试
 
@@ -37,6 +78,7 @@ key.alias=androiddebugkey
 key.store.password=android
 key.store=./keystore/xiaomi.demo.v1.keystore
 key.alias.password=android
+
 ```
 
 3.设置系统ANDROID_HOME变量指定到android sdk安装根目录，设置方法参考设置系统PATH变量
