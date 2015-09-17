@@ -1052,4 +1052,9 @@ public abstract class XmPluginHostApi {
      * @param token 设备token
      */
     public abstract void notifyBluetoothBinded(String mac, String token);
+    
+    /**ApiLevel:10 获取小米用户信息
+     * @param userid 小米账号
+     */
+    public abstract void getUserInfo(String userid,final Callback<UserInfo> callback);
 }
