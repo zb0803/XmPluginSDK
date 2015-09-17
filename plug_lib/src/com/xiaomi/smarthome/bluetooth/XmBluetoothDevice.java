@@ -25,11 +25,6 @@ public class XmBluetoothDevice {
     /**
      * ApiLevel:10
      */
-    public int deviceType;
-
-    /**
-     * ApiLevel:10
-     */
     public XmBluetoothDevice() {
 
     }
@@ -37,21 +32,18 @@ public class XmBluetoothDevice {
     /**
      * ApiLevel:10
      */
-    public XmBluetoothDevice(android.bluetooth.BluetoothDevice device, int deviceType) {
+    public XmBluetoothDevice(android.bluetooth.BluetoothDevice device) {
         this.device = device;
-        this.deviceType = deviceType;
         this.isConnected = true;
     }
 
     /**
      * ApiLevel:10
      */
-    public XmBluetoothDevice(android.bluetooth.BluetoothDevice device, int rssi, byte[] scanRecord,
-            int deviceType) {
+    public XmBluetoothDevice(android.bluetooth.BluetoothDevice device, int rssi, byte[] scanRecord) {
         this.device = device;
         this.rssi = rssi;
         this.scanRecord = scanRecord;
-        this.deviceType = deviceType;
         this.isConnected = false;
     }
 }

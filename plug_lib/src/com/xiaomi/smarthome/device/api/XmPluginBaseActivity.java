@@ -506,6 +506,7 @@ public class XmPluginBaseActivity extends FragmentActivity implements IXmPluginA
             int requestCode) {
         if (isLocalLaunch()) {
             intent.setClassName(getPackageName(), className);
+            if(mDeviceStat!=null)
             intent.putExtra("extra_device_did", mDeviceStat.did);
             this.startActivityForResult(intent, requestCode);
         } else {

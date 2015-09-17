@@ -31,6 +31,10 @@ public interface IXmPluginHostActivity {
     public final String ANIM_SLIDE_OUT_RIGHT = "slide_out_right";
     public final String ANIM_SLIDE_OUT_TOP = "slide_out_top";
     public final String ANIM_SLIDE_OUT_BOTTOM = "slide_out_bottom";
+    public final String ANIM_FADE_IN_LEFT = "fade_in_left";
+    public final String ANIM_FADE_IN_RIGHT = "fade_in_right";
+    public final String ANIM_FADE_OUT_LEFT = "fade_out_left";
+    public final String ANIM_FADE_OUT_RIGHT ="fade_out_right";
 
     /**
      * /** ApiLevel:1 打开菜单，onActivityResult()返回用户点击结果 String selectMenu =
@@ -270,13 +274,16 @@ public interface IXmPluginHostActivity {
     /**
      * ApiLevel: 8
      * 
+     *startSetTimerList(mDeviceStat.did, "set_rgb", String.valueOf(0x00ffffff),
+                        "set_rgb", String.valueOf(0x00000000), mDeviceStat.did, "RGB灯定时器", "RGB灯定时器");
+                        
      * @param deviceId device id
-     * @param onMethod 当on timer时间到的时候执行的action
+     * @param onMethod 当on timer时间到的时候执行的action，执行原始数据
      * @param onParams on action的参数
-     * @param offMethod 当off timer时间到的时候执行的action
+     * @param offMethod 当off timer时间到的时候执行的action，执行原始数据
      * @param offParams off action参数
-     * @param identify 定时器的identify
-     * @param displayName 定时的名称
+     * @param identify 定时器的identify，使用device id
+     * @param displayName 定时的名称,在场景执行日志中显示
      * @param timerTitle 定时器标题
      */
     public void startSetTimerList(String deviceId, String onMethod, String onParams,

@@ -59,6 +59,13 @@ public class MoreActivity extends XmPluginBaseActivity {
                 startActivity(null, ApiDemosActivity.class.getName());
             }
         });
+        findViewById(R.id.test_case).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(null, TestCaseActivity.class.getName());
+            }
+        });
 
         findViewById(R.id.base_setting).setOnClickListener(new OnClickListener() {
 

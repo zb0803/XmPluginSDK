@@ -15,6 +15,8 @@ import com.xiaomi.smarthome.device.api.DeviceStat;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 import com.xiaomi.smarthome.device.api.XmPluginHostApi;
 
+import org.json.JSONArray;
+
 import java.util.List;
 
 public class ApiDemosActivity extends XmPluginBaseActivity {
@@ -97,7 +99,8 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
 
             @Override
             public void onClick(View v) {
-                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台", "https://open.home.mi.com/index.html#/intro", null, null, null);
+                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台",
+                        "https://open.home.mi.com/index.html#/intro", null, null, null);
             }
         });
 
@@ -106,7 +109,16 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
             @Override
             public void onClick(View v) {
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.welcome);
-                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台", null, bitmap, null, null);
+                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台", null, bitmap, null,
+                        null);
+            }
+        });
+
+        findViewById(R.id.test_set_timer).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHostActivity.startSetTimerList(mDeviceStat.did, "set_rgb", String.valueOf(0x00ffffff),
+                        "set_rgb", String.valueOf(0x00000000), mDeviceStat.did, "RGB灯定时器", "RGB灯定时器");
             }
         });
     }

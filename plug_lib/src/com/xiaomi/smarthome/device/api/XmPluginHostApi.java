@@ -2,6 +2,7 @@
 package com.xiaomi.smarthome.device.api;
 
 import android.app.Application;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -28,7 +29,7 @@ import java.util.Map;
 public abstract class XmPluginHostApi {
     public final static String METHOD_POST = "POST";
     public final static String METHOD_GET = "GET";
-
+    
     protected static XmPluginHostApi sXmPluginHostApi = null;
 
     public static XmPluginHostApi instance() {
@@ -1045,4 +1046,10 @@ public abstract class XmPluginHostApi {
      */
     public abstract void sendMessage(String did, int msgType, Intent msgArg,
             DeviceStat deviceStat, MessageCallback msgCallback);
+    
+    /**ApiLevel:10 通知蓝牙设备已绑定
+     * @param mac 绑定的设备mac
+     * @param token 设备token
+     */
+    public abstract void notifyBluetoothBinded(String mac, String token);
 }

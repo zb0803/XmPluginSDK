@@ -29,8 +29,9 @@ public class TransparentActivity extends XmPluginBaseActivity {
                 finish();
             }
         });
+        findViewById(R.id.title_bar_share).setVisibility(View.VISIBLE);
 
-        findViewById(R.id.title_bar_more).setVisibility(View.GONE);
+        findViewById(R.id.title_bar_more).setVisibility(View.VISIBLE);
     }
 
 }
