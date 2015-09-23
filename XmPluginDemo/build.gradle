@@ -49,5 +49,21 @@ android {
             keyAlias 'mihome-demo-key'
             keyPassword 'mihome'
         }
+        release {
+            storeFile file('./keystore/mihome-demo.keystore')
+            storePassword 'mihome'
+            keyAlias 'mihome-demo-key'
+            keyPassword 'mihome'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
     }
 }

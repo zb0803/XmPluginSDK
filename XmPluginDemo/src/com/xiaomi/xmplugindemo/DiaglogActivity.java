@@ -112,6 +112,23 @@ public class DiaglogActivity extends XmPluginBaseActivity {
             }
         });
 
+        findViewById(R.id.item_select_dialog).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MLAlertDialog.Builder(DiaglogActivity.this)
+                        .setTitle("单选 Dialog")
+                        .setItems(new String[] {
+                                "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"
+                        },  new MLAlertDialog.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // dialog.dismiss();
+                            }
+                        }).show();
+            }
+        });
+        
         findViewById(R.id.single_select_dialog).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -12,11 +12,13 @@ import android.widget.TextView;
 
 import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
 import com.xiaomi.smarthome.device.api.DeviceStat;
+import com.xiaomi.smarthome.device.api.IXmPluginHostActivity;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 import com.xiaomi.smarthome.device.api.XmPluginHostApi;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ApiDemosActivity extends XmPluginBaseActivity {
@@ -119,6 +121,24 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
             public void onClick(View v) {
                 mHostActivity.startSetTimerList(mDeviceStat.did, "set_rgb", String.valueOf(0x00ffffff),
                         "set_rgb", String.valueOf(0x00000000), mDeviceStat.did, "RGB灯定时器", "RGB灯定时器");
+            }
+        });
+        findViewById(R.id.test_scene).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> menus = new ArrayList<String>();
+                ArrayList<Intent> intents = new ArrayList<Intent>();
+                if (XmPluginHostApi.instance().getApiLevel() > 5) {
+                    Intent sceneIntent = new Intent();
+                    sceneIntent.putExtra(
+                            IXmPluginHostActivity.KEY_INTENT_TARGET_ACTIVITY_IN_HOST,
+                            IXmPluginHostActivity.TARGET_ACTIVITY_IN_HOST_DEVICE_SCENE);
+
+                    sceneIntent.putExtra("menu", "智能场景");
+                    sceneIntent.putExtra("device_id", mDeviceStat.did);
+                    intents.add(sceneIntent);
+                }
+                mHostActivity.openMoreMenu(menus, intents, true, 1);
             }
         });
     }

@@ -78,7 +78,7 @@
                 android:paddingLeft="@dimen/alertdialog_content_panel_message_padding"
                 android:paddingRight="@dimen/alertdialog_content_panel_message_padding"
                 android:textColor="@color/dialog_sub_title_txt_color"
-                android:textSize="@dimen/font_size_5" />
+                android:textSize="@dimen/alertdialog_message_text_size" />
         </ScrollView>
     </LinearLayout>
 
@@ -98,8 +98,8 @@
         android:id="@+id/title_divider_line_bottom"
         android:layout_marginBottom="@dimen/alertdialog_content_panel_margin_bottom"
         android:layout_width="fill_parent"
-        android:layout_height="2px"
-        android:background="@android:drawable/divider_horizontal_bright" />
+        android:layout_height="1px"
+        android:background="@drawable/std_dialog_line" />
       
     <LinearLayout
         android:id="@+id/buttonPanel"

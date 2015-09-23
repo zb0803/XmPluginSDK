@@ -34,6 +34,7 @@
     <color name="white_30_transparent">#40FFFFFF</color>
     <color name="white_20_transparent">#30FFFFFF</color>
     <color name="black_90_transparent">#E6000000</color>
+    <color name="black_80_transparent">#CC000000</color>
     <color name="black_75_transparent">#C0000000</color>
     <color name="black_50_transparent">#80000000</color>
     <color name="black_60_transparent">#A0000000</color>
