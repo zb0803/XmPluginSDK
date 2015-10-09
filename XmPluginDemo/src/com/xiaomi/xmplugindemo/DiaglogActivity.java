@@ -63,7 +63,7 @@ public class DiaglogActivity extends XmPluginBaseActivity {
                         .setTitle("Message Dialog")
                         .setMessage("欢迎使用智能家庭插件系统公共UI组件，这是一个消息Dialog实例")
                         .setPositiveButton("确定", null)
-                        .setNegativeButton("取消", null)
+//                        .setNegativeButton("取消", null)
                         .show();
             }
         });
