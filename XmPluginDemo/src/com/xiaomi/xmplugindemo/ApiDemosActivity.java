@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -97,25 +98,6 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
             }
         });
 
-        findViewById(R.id.testShareUrl).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台",
-                        "https://open.home.mi.com/index.html#/intro", null, null, null);
-            }
-        });
-
-        findViewById(R.id.testShareImage).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.welcome);
-                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台", null, bitmap, null,
-                        null);
-            }
-        });
-
         findViewById(R.id.test_set_timer).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +121,14 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
                     intents.add(sceneIntent);
                 }
                 mHostActivity.openMoreMenu(menus, intents, true, 1);
+            }
+        });
+        
+        findViewById(R.id.open_shop).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://home.mi.com/shop/search?action=check&keyword=小蚁摄像头 夜视&source=com.xiaomi.smarthome​");
+                XmPluginHostApi.instance().gotoPage(activity(), mPluginPackage, uri, null);
             }
         });
     }

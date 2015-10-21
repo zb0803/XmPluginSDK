@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
@@ -264,6 +265,7 @@ public abstract class XmPluginHostApi {
      * @param value 为Object 可以为int或String或JsonObject
      * @param extra 可以为null
      */
+    @Deprecated
     public abstract void addRecord(String appId, String key, Object value, JSONObject extra);
 
     /**
@@ -1057,4 +1059,50 @@ public abstract class XmPluginHostApi {
      * @param userid 小米账号
      */
     public abstract void getUserInfo(String userid,final Callback<UserInfo> callback);
+
+    /**
+     * ApiLevel:10 开始一个下载
+     *
+     * @param uri     download uri
+     * @param udn     can be @null
+     * @param dirType the directory type to pass to
+     *                {@link Context#getExternalFilesDir(String)}
+     * @param subPath the path within the external directory. If subPath is a
+     *                directory(ending with "/"), destination filename will be
+     *                generated.
+     * @return download id
+     */
+    public abstract long startDownload(Uri uri, String udn, String dirType, String subPath);
+
+    /**
+     * ApiLevel:10 pause download
+     * @param ids the IDs of the downloads
+     */
+    public abstract void pauseDownload(long... ids);
+
+    /**
+     * ApiLevel:10 resume download
+     * @param ids the IDs of the downloads
+     */
+    public abstract void resumeDownload(long... ids);
+
+    /**
+     * ApiLevel:10 restart download
+     * @param ids the IDs of the downloads
+     */
+    public abstract void restartDownload(long... ids);
+
+    /**
+     * ApiLevel:10 remove download
+     * @param ids the IDs of the downloads
+     */
+    public abstract void removeDownload(long...ids);
+
+    /**
+     * ApiLevel:10 query download
+     * @param onlyVisibleDownloads hide downloads exclude
+     * @param filterIds the IDs of the downloads
+     */
+    public abstract Cursor queryDownload(boolean onlyVisibleDownloads,long...filterIds);
+
 }

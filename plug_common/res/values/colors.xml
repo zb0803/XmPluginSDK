@@ -133,5 +133,6 @@
     <color name="dialog_bg">#fff8f8f8</color>
     <color name="dialog_title_txt_color">#cc000000</color>
     <color name="dialog_sub_title_txt_color">#80000000</color>
+    
 
 </resources>

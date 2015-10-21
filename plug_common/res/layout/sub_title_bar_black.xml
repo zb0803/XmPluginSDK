@@ -10,20 +10,19 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="left|center_vertical"
-		android:paddingLeft="@dimen/std_titlebar_margin_left_right"
+        android:paddingLeft="@dimen/std_titlebar_margin_left_right"
         android:paddingRight="@dimen/std_titlebar_margin_left_right"
         android:scaleType="center"
         android:src="@drawable/std_tittlebar_main_device_back" />
 
     <TextView
         android:id="@+id/title_bar_title"
+        style="@style/std_word_001"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/title_bar_text_color"
-        android:textSize="@dimen/title_bar_text_size" />
+        android:maxLines="1" />
 
     <ImageView
         android:id="@+id/title_bar_more"

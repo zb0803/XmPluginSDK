@@ -5,13 +5,13 @@ configurations{
 }
 
 dependencies {
-    providedlibs files('lib_ex/android-support-v13.jar')
+    provided files('lib_ex/android-support-v13.jar')
 //    compile files('lib_ex/android-support-v4.jar')
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "23.0.1"
 
     libraryVariants.all {
         variant -> variant.javaCompile.classpath += configurations.providedlibs

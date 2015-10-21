@@ -307,4 +307,16 @@ public interface IXmPluginHostActivity {
             String shareThumbUrl,
             Bitmap thumb
             );
+    
+    /**
+     * ApiLevel: 10 打开分享页面，分享多张图片
+     * 
+     * @param shareTitle 分享title
+     * @param shareContent 分享文字内容
+     * @param shareImagesZipUrl 分享链接图片zip包
+     */
+    public void openShareMediaActivity(String shareTitle,
+            String shareContent,
+            String shareImagesZipUrl
+            );
 }
