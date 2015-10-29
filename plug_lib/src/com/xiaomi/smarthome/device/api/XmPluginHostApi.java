@@ -2,7 +2,6 @@
 package com.xiaomi.smarthome.device.api;
 
 import android.app.Application;
-import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -30,7 +29,7 @@ import java.util.Map;
 public abstract class XmPluginHostApi {
     public final static String METHOD_POST = "POST";
     public final static String METHOD_GET = "GET";
-    
+
     protected static XmPluginHostApi sXmPluginHostApi = null;
 
     public static XmPluginHostApi instance() {
@@ -90,9 +89,23 @@ public abstract class XmPluginHostApi {
      * @param callback
      * @param parser
      */
+    @Deprecated
     public abstract <T> void callHttpApi(String model, String url, String method,
-            List<NameValuePair> params,
-            final Callback<T> callback, final Parser<T> parser);
+            List<NameValuePair> params, final Callback<T> callback, final Parser<T> parser);
+
+    /**
+     * ApiLevel: 12 调用普通http请求
+     * 
+     * @param model
+     * @param url
+     * @param method
+     * @param params
+     * @param callback
+     * @param parser
+     * @param <T>
+     */
+    public abstract <T> void callHttpApiV12(String model, String url, String method,
+            List<KeyValuePair> params, final Callback<T> callback, final Parser<T> parser);
 
     /**
      * ApiLevel:1 设备方法调用
@@ -232,6 +245,16 @@ public abstract class XmPluginHostApi {
      * @param callback
      */
     public abstract void subscribeDevice(String did, int pid, List<String> entryList, int expire,
+            Callback<Void> callback);
+
+    /**
+     * ApiLevel: 12 取消订阅
+     * @param did
+     * @param pid
+     * @param entryList
+     * @param callback
+     */
+    public abstract void unsubscribeDevice(String did, int pid, List<String> entryList,
             Callback<Void> callback);
 
     // ApiLevel:1
@@ -673,10 +696,26 @@ public abstract class XmPluginHostApi {
      * @param callback
      * @param parser
      */
+    @Deprecated
     public abstract <T> void callRouterRemoteApi(String routerId, String url, String method,
-            boolean fullPath,
-            List<NameValuePair> params,
-            final Callback<T> callback, final Parser<T> parser);
+            boolean fullPath, List<NameValuePair> params, final Callback<T> callback,
+            final Parser<T> parser);
+
+    /**
+     * ApiLevel: 12 访问路由器服务远程接口
+     * 
+     * @param routerId
+     * @param url
+     * @param method
+     * @param fullPath
+     * @param params
+     * @param callback
+     * @param parser
+     * @param <T>
+     */
+    public abstract <T> void callRouterRemoteApiV12(String routerId, String url, String method,
+            boolean fullPath, List<KeyValuePair> params, final Callback<T> callback,
+            final Parser<T> parser);
 
     /**
      * ApiLevel:2 获取当前登录的账号id
@@ -695,9 +734,23 @@ public abstract class XmPluginHostApi {
      * @param callback
      * @param parser
      */
+    @Deprecated
     public abstract <T> void callLocalHttpApi(String model, String url, String method,
-            List<NameValuePair> params,
-            final Callback<T> callback, final Parser<T> parser);
+            List<NameValuePair> params, final Callback<T> callback, final Parser<T> parser);
+
+    /**
+     * ApiLevel: 12 调用本地局域网普通http请求 延时更低，超时时间为2s
+     * 
+     * @param model
+     * @param url
+     * @param method
+     * @param params
+     * @param callback
+     * @param parser
+     * @param <T>
+     */
+    public abstract <T> void callLocalHttpApiV12(String model, String url, String method,
+            List<KeyValuePair> params, final Callback<T> callback, final Parser<T> parser);
 
     /**
      * ApiLevel:2 修改设备名字
@@ -713,7 +766,6 @@ public abstract class XmPluginHostApi {
      * ApiLevel:2 解绑设备
      * 
      * @param did
-     * @param newName
      * @param callback
      */
     public abstract void unBindDevice(final String did, int pid,
@@ -1039,7 +1091,9 @@ public abstract class XmPluginHostApi {
     public abstract <T> void callSmartHomeApi(String model, String relativeUrl, String params,
             final Callback<T> callback, final Parser<T> parser);
 
-    /**ApiLevel:8 向某个设备的插件发送消息
+    /**
+     * ApiLevel:8 向某个设备的插件发送消息
+     * 
      * @param did
      * @param msgType
      * @param msgArg
@@ -1048,61 +1102,68 @@ public abstract class XmPluginHostApi {
      */
     public abstract void sendMessage(String did, int msgType, Intent msgArg,
             DeviceStat deviceStat, MessageCallback msgCallback);
-    
-    /**ApiLevel:10 通知蓝牙设备已绑定
+
+    /**
+     * ApiLevel:10 通知蓝牙设备已绑定
+     * 
      * @param mac 绑定的设备mac
      * @param token 设备token
      */
     public abstract void notifyBluetoothBinded(String mac, String token);
-    
-    /**ApiLevel:10 获取小米用户信息
+
+    /**
+     * ApiLevel:10 获取小米用户信息
+     * 
      * @param userid 小米账号
      */
-    public abstract void getUserInfo(String userid,final Callback<UserInfo> callback);
+    public abstract void getUserInfo(String userid, final Callback<UserInfo> callback);
 
     /**
      * ApiLevel:10 开始一个下载
      *
-     * @param uri     download uri
-     * @param udn     can be @null
-     * @param dirType the directory type to pass to
-     *                {@link Context#getExternalFilesDir(String)}
-     * @param subPath the path within the external directory. If subPath is a
-     *                directory(ending with "/"), destination filename will be
-     *                generated.
+     * @param uri download uri
+     * @param udn can be @null
+     * @param dirType the directory type to pass to {@link Context#getExternalFilesDir(String)}
+     * @param subPath the path within the external directory. If subPath is a directory(ending with
+     *            "/"), destination filename will be generated.
      * @return download id
      */
     public abstract long startDownload(Uri uri, String udn, String dirType, String subPath);
 
     /**
      * ApiLevel:10 pause download
+     * 
      * @param ids the IDs of the downloads
      */
     public abstract void pauseDownload(long... ids);
 
     /**
      * ApiLevel:10 resume download
+     * 
      * @param ids the IDs of the downloads
      */
     public abstract void resumeDownload(long... ids);
 
     /**
      * ApiLevel:10 restart download
+     * 
      * @param ids the IDs of the downloads
      */
     public abstract void restartDownload(long... ids);
 
     /**
      * ApiLevel:10 remove download
+     * 
      * @param ids the IDs of the downloads
      */
-    public abstract void removeDownload(long...ids);
+    public abstract void removeDownload(long... ids);
 
     /**
      * ApiLevel:10 query download
+     * 
      * @param onlyVisibleDownloads hide downloads exclude
      * @param filterIds the IDs of the downloads
      */
-    public abstract Cursor queryDownload(boolean onlyVisibleDownloads,long...filterIds);
+    public abstract Cursor queryDownload(boolean onlyVisibleDownloads, long... filterIds);
 
 }
