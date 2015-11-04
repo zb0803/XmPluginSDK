@@ -2,14 +2,14 @@
 package com.xiaomi.smarthome.device.api;
 
 /**
- * ApiLevel: 12 Created by chenhao on 15/10/29.
+ * ApiLevel: 13 Created by chenhao on 15/10/29.
  */
 public class KeyValuePair {
     private final String key;
     private final String value;
 
     /**
-     * ApiLevel: 12
+     * ApiLevel: 13
      * 
      * @param name
      * @param value
@@ -23,7 +23,7 @@ public class KeyValuePair {
     }
 
     /**
-     * ApiLevel: 12
+     * ApiLevel: 13
      * 
      * @return
      */
@@ -32,7 +32,7 @@ public class KeyValuePair {
     }
 
     /**
-     * ApiLevel: 12
+     * ApiLevel: 13
      * 
      * @return
      */

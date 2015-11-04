@@ -324,14 +324,14 @@ public interface IXmPluginHostActivity {
     );
 
     /**
-     * ApiLevel:12 更多菜单 菜单项基类
+     * ApiLevel: 13 更多菜单 菜单项基类
      **/
     public static abstract class MenuItemBase implements Parcelable {
 
     }
 
     /**
-     * ApiLevel:12 onActivityResult()返回用户点击结果 String selectMenu =
+     * ApiLevel: 13 onActivityResult()返回用户点击结果 String selectMenu =
      * data.getStringExtra("menu");
      */
     public static class StringMenuItem extends MenuItemBase {
@@ -367,7 +367,7 @@ public interface IXmPluginHostActivity {
     }
 
     /**
-     * ApiLevel:12 通过Intent跳到下一页
+     * ApiLevel: 13 通过Intent跳到下一页
      */
     public static class IntentMenuItem extends MenuItemBase {
         public String name;
@@ -405,7 +405,7 @@ public interface IXmPluginHostActivity {
     }
 
     /**
-     * ApiLevel:12 开关按钮
+     * ApiLevel: 13 开关按钮
      */
     public static class SlideBtnMenuItem extends MenuItemBase {
         public String name;
@@ -456,13 +456,18 @@ public interface IXmPluginHostActivity {
     }
 
     /**
-     * ApiLevel:12 新打开更多界面接口，加入开关项
+     * ApiLevel: 13 新打开更多界面接口，加入开关项
      *
-     * @param did
      * @param menus
      * @param useDefault
      * @param requestCode
      */
     public abstract void openMoreMenu(ArrayList<MenuItemBase> menus,
                                       boolean useDefault, int requestCode);
+
+    /**
+     * ApiLevel: 13 打开自定义场景创建页面
+     *
+     */
+    public abstract void startEditCustomScene();
 }
