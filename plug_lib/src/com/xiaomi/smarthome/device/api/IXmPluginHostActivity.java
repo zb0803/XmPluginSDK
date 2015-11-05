@@ -316,7 +316,7 @@ public interface IXmPluginHostActivity {
      *
      * @param shareTitle        分享title
      * @param shareContent      分享文字内容
-     * @param shareImagesZipUrl 分享链接图片zip包
+     * @param shareImagesZipUrl 分享链接图片zip包，可以是本地文件zip包文件路径，本地单张图片路径，网络zip包url
      */
     public void openShareMediaActivity(String shareTitle,
                                        String shareContent,

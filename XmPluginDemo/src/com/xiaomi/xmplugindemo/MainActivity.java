@@ -6,15 +6,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
+import com.xiaomi.smarthome.common.ui.dialog.MenuDialog;
+import com.xiaomi.smarthome.common.ui.widget.SwitchButton;
 import com.xiaomi.smarthome.device.api.BaseDevice;
 import com.xiaomi.smarthome.device.api.BaseDevice.StateChangedListener;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
+
+import org.json.JSONArray;
 
 public class MainActivity extends XmPluginBaseActivity implements StateChangedListener {
     static final int REQUEST_MENUS = 1;
@@ -23,19 +31,20 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
 
     TextView mInfoView;
     boolean mIsResume;
-    Handler mHandler = new Handler(){
+    LayoutInflater mLayoutInflater;
+    Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
-           switch (msg.what) {
-            case MSG_SUB_PROPERTIES:
-                if(mIsResume){
-                    mDevice.subscribeProperty(DemoDevice.PROPERTIES, null);
-                    sendEmptyMessageDelayed(MSG_SUB_PROPERTIES, 3*60000);
-                }
-                break;
+            switch (msg.what) {
+                case MSG_SUB_PROPERTIES:
+                    if (mIsResume) {
+                        mDevice.subscribeProperty(DemoDevice.PROPERTIES, null);
+                        sendEmptyMessageDelayed(MSG_SUB_PROPERTIES, 3 * 60000);
+                    }
+                    break;
 
-            default:
-                break;
-        }
+                default:
+                    break;
+            }
         };
     };
 
@@ -48,12 +57,13 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
         TextView subTitleView = ((TextView) findViewById(R.id.sub_title_bar_title));
         subTitleView.setText("子设备");
         subTitleView.setVisibility(View.VISIBLE);
-        
+
         mInfoView = (TextView) findViewById(R.id.info);
 
         // 初始化device
         mDevice = DemoDevice.getDevice(mDeviceStat);
 
+        mLayoutInflater = LayoutInflater.from(activity());
         // 设置titlebar在顶部透明显示时的顶部padding
         mHostActivity.setTitleBarPadding(findViewById(R.id.title_bar));
         ((TextView) findViewById(R.id.title_bar_title)).setText(mDevice.getName());
@@ -63,50 +73,18 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
                 finish();
             }
         });
-        
+
         findViewById(R.id.title_bar_redpoint).setVisibility(View.VISIBLE);
 
         findViewById(R.id.title_bar_more).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // 新版更多菜单规则，第一页插件自定义，然后跳转到公共页面
-                Intent intent = new Intent();
-                startActivity(intent, MoreActivity.class.getName());
-
-                // // 点击菜单返回界面，需要在onActivityResult接收参数
-                // ArrayList<String> menus = new ArrayList<String>();
-                // menus.add("ApiDemo-MenuOnResult-分享");
-                //
-                // ArrayList<Intent> intents = new ArrayList<Intent>();
-                //
-                // Intent welcomeIntent = mHostActivity.getActivityIntent(null,
-                // WelcomeActivity.class.getName());
-                // welcomeIntent.putExtra("menu", "你好, 开发者");
-                // intents.add(welcomeIntent);
-                //
-                // Intent intent = mHostActivity.getActivityIntent(null,
-                // SettingActivity.class.getName());
-                // intent.putExtra("menu", "设置");
-                // intents.add(intent);
-                //
-                // Intent apiDemosIntent = mHostActivity.getActivityIntent(null,
-                // ApiDemosActivity.class.getName());
-                // apiDemosIntent.putExtra("menu", "ApiDemo-Others");
-                // intents.add(apiDemosIntent);
-                //
-                // // Intent mihomeIntent = new Intent();
-                // // mihomeIntent.setClassName("com.xiaomi.smarthome",
-                // //
-                // "com.xiaomi.smarthome.framework.webview.CommonWebViewActivity");
-                // // mihomeIntent.putExtra("url", "http://home.mi.com");
-                // // mihomeIntent.putExtra("title", "MiHome");
-                // // mihomeIntent.putExtra("menu", "MiHome");
-                // // intents.add(mihomeIntent);
-                //
-                // // 设置自定义菜单
-                // mHostActivity.openMoreMenu(menus, intents, true,
-                // REQUEST_MENUS);
+                // // 新版更多菜单规则，第一页插件自定义，然后跳转到公共页面
+                // Intent intent = new Intent();
+                // startActivity(intent, MoreActivity.class.getName());
+//                moreMenuDefault();
+                moreMenuUseDefine();
             }
         });
 
@@ -157,6 +135,239 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
 
     }
 
+    void moreMenuDefault() {
+        // 下拉菜单
+        MenuDialog menuDialog = new MenuDialog(activity());
+        menuDialog.setBackGroundColor(0xff16ccec);
+        menuDialog.setItems(new String[] {
+                "设置", "透明titlebar", "Dialog", "分享", "ApiDemo", "测试用例"
+        }, new MenuDialog.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                    {
+                        // ArrayList<MenuItemBase> menus = new
+                        // ArrayList<IXmPluginHostActivity.MenuItemBase>();
+                        //
+                        // //
+                        // StringMenuItem stringMenuItem = new
+                        // StringMenuItem();
+                        // stringMenuItem.name = "test string menu";
+                        // menus.add(stringMenuItem);
+                        //
+                        // //
+                        // IntentMenuItem intentMenuItem = new
+                        // IntentMenuItem();
+                        // intentMenuItem.name = "test intent menu";
+                        // intentMenuItem.intent =
+                        // mHostActivity.getActivityIntent(null,
+                        // ApiDemosActivity.class.getName());
+                        // menus.add(intentMenuItem);
+                        //
+                        // //
+                        // SlideBtnMenuItem slideBtnMenuItem = new
+                        // SlideBtnMenuItem();
+                        // slideBtnMenuItem.name = "test slide menu";
+                        // slideBtnMenuItem.isOn = mDevice.getRgb() > 0;
+                        // slideBtnMenuItem.onMethod = "set_rgb";
+                        // JSONArray onparams = new JSONArray();
+                        // onparams.put(0xffffff);
+                        // slideBtnMenuItem.onParams =
+                        // onparams.toString();
+                        // slideBtnMenuItem.offMethod = "set_rgb";
+                        // JSONArray offparams = new JSONArray();
+                        // offparams.put(0);
+                        // slideBtnMenuItem.offParams =
+                        // offparams.toString();
+                        // menus.add(slideBtnMenuItem);
+
+                        mHostActivity.openMoreMenu(null, true,
+                                REQUEST_MENUS);
+                    }
+                        break;
+                    case 1:
+                        startActivity(null, TransparentActivity.class.getName());
+                        break;
+                    case 2:
+                        startActivity(null, DiaglogActivity.class.getName());
+                        break;
+                    case 3:
+                        startActivity(null, ShareActivity.class.getName());
+                        break;
+                    case 4:
+                        startActivity(null, ApiDemosActivity.class.getName());
+                        break;
+                    case 5:
+                        startActivity(null, TestCaseActivity.class.getName());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        menuDialog.show();
+    }
+
+    void moreMenuUseDefine() {
+        // 下拉菜单
+        final MenuDialog menuDialog = new MenuDialog(activity());
+        menuDialog.setMenuAdapter(new BaseAdapter() {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                switch (position) {
+                    case 0:
+                    {
+                        if (convertView == null) {
+                            convertView = mLayoutInflater.inflate(R.layout.menu_dialog_item, null);
+                        }
+                        TextView textView = (TextView) convertView.findViewById(R.id.text1);
+                        textView.setText("设置");
+                        convertView.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mHostActivity.openMoreMenu(null, true,
+                                        REQUEST_MENUS);
+                                menuDialog.dismiss();
+                            }
+                        });
+                        break;
+                    }
+                    case 1:
+                    {
+                        if (convertView == null) {
+                            convertView = mLayoutInflater.inflate(R.layout.menu_dialog_slidebtn_item, null);
+                        }
+                        TextView textView = (TextView) convertView.findViewById(R.id.text1);
+                        textView.setText("开关");
+                        SwitchButton switchButton = (SwitchButton)convertView.findViewById(R.id.slide_btn);
+                        switchButton.setOnCheckedChangeListener(null);
+                        switchButton.setChecked(mDevice.getRgb()!=0);
+                        switchButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                JSONArray params = new JSONArray();
+                                if(isChecked){
+                                    params.put(0xffffff);
+                                }else{
+                                    params.put(0);
+                                }
+                                mDevice.callMethod("set_rgb", params, null, null);
+                            }
+                        });
+                        break;
+                    }
+                    case 2: {
+                        if (convertView == null) {
+                            convertView = mLayoutInflater.inflate(R.layout.menu_dialog_item, null);
+                        }
+                        TextView textView = (TextView) convertView.findViewById(R.id.text1);
+                        textView.setText("透明titlebar");
+                        convertView.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(null, TransparentActivity.class.getName());
+                                menuDialog.dismiss();
+                            }
+                        });
+                        break;
+                    }
+                    case 3: {
+                        if (convertView == null) {
+                            convertView = mLayoutInflater.inflate(R.layout.menu_dialog_item, null);
+                        }
+                        TextView textView = (TextView) convertView.findViewById(R.id.text1);
+                        textView.setText("Dialog");
+                        convertView.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(null, DiaglogActivity.class.getName());
+                                menuDialog.dismiss();
+                            }
+                        });
+                        break;
+                    }
+                    case 4: {
+                        if (convertView == null) {
+                            convertView = mLayoutInflater.inflate(R.layout.menu_dialog_item, null);
+                        }
+                        TextView textView = (TextView) convertView.findViewById(R.id.text1);
+                        textView.setText("分享");
+                        convertView.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(null, ShareActivity.class.getName());
+                                menuDialog.dismiss();
+                            }
+                        });
+                        break;
+                    }
+                    case 5: {
+                        if (convertView == null) {
+                            convertView = mLayoutInflater.inflate(R.layout.menu_dialog_item, null);
+                        }
+                        TextView textView = (TextView) convertView.findViewById(R.id.text1);
+                        textView.setText("API Demo");
+                        convertView.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(null, ShareActivity.class.getName());
+                                menuDialog.dismiss();
+                            }
+                        });
+                        break;
+                    }
+                    case 6: {
+                        if (convertView == null) {
+                            convertView = mLayoutInflater.inflate(R.layout.menu_dialog_item, null);
+                        }
+                        TextView textView = (TextView) convertView.findViewById(R.id.text1);
+                        textView.setText("测试用例");
+                        convertView.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(null, TestCaseActivity.class.getName());
+                                menuDialog.dismiss();
+                            }
+                        });
+                        break;
+                    }
+                   
+                    default:
+                        break;
+                }
+                return convertView;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return position;
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
+
+            @Override
+            public int getCount() {
+                return 7;
+            }
+
+            @Override
+            public int getViewTypeCount() {
+                return 7;
+            }
+
+            @Override
+            public int getItemViewType(int position) {
+                return position;
+            }
+        });
+        menuDialog.show();
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -167,27 +378,9 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
                 if (TextUtils.isEmpty(selectMenu)) {
                     return;
                 }
-                if (selectMenu.equals("ApiDemo-MenuOnResult-分享")) {
+                if (selectMenu.equals("test string menu")) {
                     // 分享微博，微信，米聊
-                    mHostActivity
-                            .share("小米智能家居分享",
-                                    "小米Note 顶配双网通版 香槟金 64GB",
-                                    "http://home.mi.com/share.html?gid=39",
-                                    "http://static.home.mi.com/app/shop/img?id=shop_9f52eb50febcbc5e3a30b95c2290ecfb.jpg&t=webp&z=1&q=80",
-                                    "http://static.home.mi.com/app/shop/img?id=shop_9f52eb50febcbc5e3a30b95c2290ecfb.jpg&t=webp&z=1&q=80",
-                                    null);
-                } else {
                     Toast.makeText(activity(), selectMenu, Toast.LENGTH_SHORT).show();
-
-                    MLAlertDialog.Builder builder = new MLAlertDialog.Builder(activity());
-                    builder.setTitle("测试Dialog");
-                    builder.setPositiveButton("Ok", new MLAlertDialog.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-
                 }
             }
         }
@@ -214,7 +407,7 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
 
     @Override
     public void onStateChanged(BaseDevice device) {
-        if(!mIsResume)
+        if (!mIsResume)
             return;
         String info = "温度:" + mDevice.getTemperature() + " 湿度:" + mDevice.getHumidity();
         mInfoView.setText(info);

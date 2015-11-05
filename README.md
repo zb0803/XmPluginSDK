@@ -5,9 +5,92 @@
 
 ------
 
-1.去掉PluginTest工程，直接在smarthome app中调试，更接近实际测试环境
+- 子设备下拉菜单规范 [子设备下拉菜单交互](子设备下拉菜单规范.pdf)
 
-2.使用脚本编译打包，直接安装本地插件，调试更方便
+###
+主人设备和家人分享设备显示基本设置，分享设备在更多菜单中隐藏调用智能家庭app的基本设置
+###
+
+使用plug_common库中MenuDialog控件实现
+
+```
+MenuDialog menuDialog = new MenuDialog(activity());
+
+
+ //设置默认样式
+    public void setItems(CharSequence[] items, DialogInterface.OnClickListener listener) {
+        this.mItems = items;
+        this.onClickListener = listener;
+    }
+    //设置背景颜色
+    public void setBackGroundColor(int color){
+        mBackgroundColor = color;
+    }
+    //设置可定制样式
+    public void setMenuAdapter(BaseAdapter adapter){
+        mListViewAdapter = adapter;
+    }
+
+
+```
+- 调整plug_common库UI风格，[新插件规范1](智能家庭app规范001.jpg) [新插件规范2](智能家庭app规范002.jpg)
+
+- 新插件规范，更新了titlebar，dialog，使用说明参考plugdemo工程
+
+- list item风格需要插件开发者按照规范实现
+
+- 请更新插件，使用新的plug_common库重新build插件
+
+- 添加家庭分享关系
+
+###
+主人设备和家人分享设备显示基本设置，分享设备在更多菜单中隐藏调用智能家庭app的基本设置
+###
+
+
+```
+public class BaseDevice
+
+
+  /**
+     * ApiLevel:10 是否主人设备
+     * 
+     * @return
+     */
+    public boolean isOwner() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_OWNER) != 0;
+    }
+
+    /**
+     * ApiLevel:10 是否家庭设备
+     * 
+     * @return
+     */
+    public boolean isFamily() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_FAMILY) != 0;
+    }
+
+    /**
+     * ApiLevel:10 是否是分享权限
+     * 
+     * @return
+     */
+    public boolean isShared() {
+        return ((mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_SHARE) != 0)
+                // 电视必须检查ownerName
+                && !TextUtils.isEmpty(mDeviceStat.ownerName);
+    }
+
+    /**
+     * ApiLevel:10 是否绑定设备，无论哪种权限，主人，分享，家庭都算
+     * 
+     * @return
+     */
+    public boolean isBinded2() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK) != 0;
+    }
+
+```
 
 
 ## 插件调试

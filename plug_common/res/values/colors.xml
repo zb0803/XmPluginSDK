@@ -134,5 +134,6 @@
     <color name="dialog_title_txt_color">#cc000000</color>
     <color name="dialog_sub_title_txt_color">#80000000</color>
     
+    <color name="dialog_muenu_bg">#f5ffffff</color>
 
 </resources>
