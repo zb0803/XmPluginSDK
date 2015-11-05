@@ -140,7 +140,7 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
         MenuDialog menuDialog = new MenuDialog(activity());
         menuDialog.setBackGroundColor(0xff16ccec);
         menuDialog.setItems(new String[] {
-                "设置", "透明titlebar", "Dialog", "分享", "ApiDemo", "测试用例"
+                "通用设置", "透明titlebar", "Dialog", "分享", "ApiDemo", "测试用例"
         }, new MenuDialog.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -223,7 +223,7 @@ public class MainActivity extends XmPluginBaseActivity implements StateChangedLi
                             convertView = mLayoutInflater.inflate(R.layout.menu_dialog_item, null);
                         }
                         TextView textView = (TextView) convertView.findViewById(R.id.text1);
-                        textView.setText("设置");
+                        textView.setText("通用设置");
                         convertView.setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View v) {

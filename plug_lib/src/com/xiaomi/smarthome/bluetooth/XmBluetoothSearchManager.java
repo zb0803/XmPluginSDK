@@ -14,6 +14,7 @@ public abstract class XmBluetoothSearchManager {
     /**
      * ApiLevel:5
      */
+    @Deprecated
     public static abstract class BluetoothHandler {
         /**
          * ApiLevel:5
@@ -76,16 +77,19 @@ public abstract class XmBluetoothSearchManager {
     /**
      * ApiLevel:5
      */
+    @Deprecated
     public abstract void startScanBluetooth(BluetoothHandler handler);
 
     /**
      * ApiLevel:5
      */
+    @Deprecated
     public abstract void stopScanBluetooth(BluetoothHandler handler);
     
     /**
      * ApiLevel:10
      */
+    @Deprecated
     public abstract void startScanBluetoothImmediately(BluetoothHandler handler);
 
 }

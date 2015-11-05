@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xiaomi.common.R;
+import com.xiaomi.smarthome.common.plug.utils.TitleBarUtil;
 import com.xiaomi.smarthome.device.api.XmPluginCommonApi;
 
 /**
@@ -28,6 +29,7 @@ public class MenuDialog extends Dialog {
     BaseAdapter mListViewAdapter;
     LayoutInflater mLayoutInflater;
     int mBackgroundColor = -1;
+    View mRootView;
 
     public MenuDialog(Context context) {
         super(context,R.style.V5_MenuDialog);
@@ -53,18 +55,18 @@ public class MenuDialog extends Dialog {
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setGravity(Gravity.TOP);
-//        TitleBarUtil.enableWhiteTranslucentStatus(getWindow());
+        TitleBarUtil.enableWhiteTranslucentStatus(getWindow());
         try {
             XmPluginCommonApi.instance().setMenuDialogWindowAnimations(getWindow());
         } catch (Throwable e) {
-
         }
         
         mLayoutInflater = LayoutInflater.from(getContext());
-        View view = mLayoutInflater.inflate(R.layout.menu_dialog, null);
-        getWindow().setContentView(view);
+        mRootView = mLayoutInflater.inflate(R.layout.menu_dialog, null);
+        getWindow().setContentView(mRootView);
+        TitleBarUtil.setTitleBarPadding(getContext().getResources().getDimensionPixelSize(R.dimen.title_bar_top_padding), mRootView);
         if(mBackgroundColor>0){
-            view.setBackgroundColor(mBackgroundColor);
+            mRootView.setBackgroundColor(mBackgroundColor);
         }
         WindowManager.LayoutParams lp = this.getWindow().getAttributes();
         lp.y = 0;
@@ -130,10 +132,9 @@ public class MenuDialog extends Dialog {
     }
 
 
-//    @Override
-//    public void onContentChanged() {
-//        super.onContentChanged();
-//        TitleBarUtil.setTitleBarPadding(mListView);
-//    }
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
+    }
 
 }
