@@ -7,9 +7,6 @@
 
 - 子设备下拉菜单规范 [子设备下拉菜单交互](子设备下拉菜单规范.pdf)
 
-###
-主人设备和家人分享设备显示基本设置，分享设备在更多菜单中隐藏调用智能家庭app的基本设置
-###
 
 使用plug_common库中MenuDialog控件实现
 
@@ -42,11 +39,6 @@ MenuDialog menuDialog = new MenuDialog(activity());
 - 请更新插件，使用新的plug_common库重新build插件
 
 - 添加家庭分享关系
-
-###
-主人设备和家人分享设备显示基本设置，分享设备在更多菜单中隐藏调用智能家庭app的基本设置
-###
-
 
 ```
 public class BaseDevice

@@ -470,4 +470,9 @@ public interface IXmPluginHostActivity {
      *
      */
     public abstract void startEditCustomScene();
+    
+    /**
+     * ApiLevel:14 进入某个设备固件更新
+     */
+    public abstract void goUpdateActivity(String did);
 }
