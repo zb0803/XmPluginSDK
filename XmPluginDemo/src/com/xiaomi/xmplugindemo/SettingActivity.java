@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import com.xiaomi.smarthome.device.api.IXmPluginHostActivity;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 
 public class SettingActivity extends XmPluginBaseActivity {
@@ -25,10 +26,16 @@ public class SettingActivity extends XmPluginBaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                mHostActivity.overridePendingTransition(IXmPluginHostActivity.ANIM_SLIDE_IN_BOTTOM, IXmPluginHostActivity.ANIM_SLIDE_OUT_TOP);
             }
         });
 
         findViewById(R.id.title_bar_more).setVisibility(View.GONE);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mHostActivity.overridePendingTransition(IXmPluginHostActivity.ANIM_SLIDE_IN_BOTTOM, IXmPluginHostActivity.ANIM_SLIDE_OUT_TOP);
+    }
 }

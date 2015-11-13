@@ -7,8 +7,8 @@
 
             <gradient
                 android:angle="270.0"
-                android:endColor="#f8f8f8"
-                android:startColor="#FFFFFF" />
+                android:endColor="#ffdfdfdf"
+                android:startColor="#ffdfdfdf" />
         </shape>
     </item>
     <item android:id="@android:id/secondaryProgress">
@@ -17,8 +17,8 @@
 
             <gradient
                 android:angle="270.0"
-                android:endColor="#f8f8f8"
-                android:startColor="#FFFFFF" />
+                android:endColor="#ffdfdfdf"
+                android:startColor="#ffdfdfdf" />
         </shape>
     </item>
     <item android:id="@android:id/progress">
@@ -28,9 +28,9 @@
 
                 <gradient
                     android:angle="270.0"
-                    android:centerColor="#48d492"
-                    android:endColor="#48d492"
-                    android:startColor="#48d492" />
+                    android:centerColor="#ff01db91"
+                    android:endColor="#ff01db91"
+                    android:startColor="#ff01db91" />
             </shape>
         </clip>
     </item>

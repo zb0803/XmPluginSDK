@@ -5,9 +5,84 @@
 
 ------
 
-1.去掉PluginTest工程，直接在smarthome app中调试，更接近实际测试环境
+- 子设备下拉菜单规范 [子设备下拉菜单交互](子设备下拉菜单规范.pdf)
 
-2.使用脚本编译打包，直接安装本地插件，调试更方便
+
+使用plug_common库中MenuDialog控件实现
+
+```
+MenuDialog menuDialog = new MenuDialog(activity());
+
+
+ //设置默认样式
+    public void setItems(CharSequence[] items, DialogInterface.OnClickListener listener) {
+        this.mItems = items;
+        this.onClickListener = listener;
+    }
+    //设置背景颜色
+    public void setBackGroundColor(int color){
+        mBackgroundColor = color;
+    }
+    //设置可定制样式
+    public void setMenuAdapter(BaseAdapter adapter){
+        mListViewAdapter = adapter;
+    }
+
+
+```
+- 调整plug_common库UI风格，[新插件规范1](智能家庭app规范001.jpg) [新插件规范2](智能家庭app规范002.jpg)
+
+- 新插件规范，更新了titlebar，dialog，使用说明参考plugdemo工程
+
+- list item风格需要插件开发者按照规范实现
+
+- 请更新插件，使用新的plug_common库重新build插件
+
+- 添加家庭分享关系
+
+```
+public class BaseDevice
+
+
+  /**
+     * ApiLevel:10 是否主人设备
+     * 
+     * @return
+     */
+    public boolean isOwner() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_OWNER) != 0;
+    }
+
+    /**
+     * ApiLevel:10 是否家庭设备
+     * 
+     * @return
+     */
+    public boolean isFamily() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_FAMILY) != 0;
+    }
+
+    /**
+     * ApiLevel:10 是否是分享权限
+     * 
+     * @return
+     */
+    public boolean isShared() {
+        return ((mDeviceStat.permitLevel & PERMISSION_NONE_MASK & PERMISSION_SHARE) != 0)
+                // 电视必须检查ownerName
+                && !TextUtils.isEmpty(mDeviceStat.ownerName);
+    }
+
+    /**
+     * ApiLevel:10 是否绑定设备，无论哪种权限，主人，分享，家庭都算
+     * 
+     * @return
+     */
+    public boolean isBinded2() {
+        return (mDeviceStat.permitLevel & PERMISSION_NONE_MASK) != 0;
+    }
+
+```
 
 
 ## 插件调试
@@ -99,5 +174,14 @@ eclipse中调试插件，具体参考
 
 
 
+
+
+小米智能家庭蓝牙插件规范
+========================================
+
+根据设备是否符合小米蓝牙标准协议，智能家庭有两种不同的调用方式
+
+1. [符合小米蓝牙标准协议](https://github.com/dingjikerbo/blog/blob/master/%E5%B0%8F%E7%B1%B3%E6%99%BA%E8%83%BD%E5%AE%B6%E5%BA%AD%E8%A7%84%E8%8C%831.md)
+2. [不符合小米蓝牙标准协议](https://github.com/dingjikerbo/blog/blob/master/%E5%B0%8F%E7%B1%B3%E6%99%BA%E8%83%BD%E5%AE%B6%E5%BA%AD%E8%A7%84%E8%8C%832.md)
 
 <!-- create time: 2015-04-17 10:53:01  -->

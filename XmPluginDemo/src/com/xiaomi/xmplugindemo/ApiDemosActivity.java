@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,9 +13,13 @@ import android.widget.TextView;
 
 import com.xiaomi.smarthome.common.ui.dialog.MLAlertDialog;
 import com.xiaomi.smarthome.device.api.DeviceStat;
+import com.xiaomi.smarthome.device.api.IXmPluginHostActivity;
 import com.xiaomi.smarthome.device.api.XmPluginBaseActivity;
 import com.xiaomi.smarthome.device.api.XmPluginHostApi;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ApiDemosActivity extends XmPluginBaseActivity {
@@ -93,20 +98,37 @@ public class ApiDemosActivity extends XmPluginBaseActivity {
             }
         });
 
-        findViewById(R.id.testShareUrl).setOnClickListener(new OnClickListener() {
-
+        findViewById(R.id.test_set_timer).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台", "https://open.home.mi.com/index.html#/intro", null, null, null);
+                mHostActivity.startSetTimerList(mDeviceStat.did, "set_rgb", String.valueOf(0x00ffffff),
+                        "set_rgb", String.valueOf(0x00000000), mDeviceStat.did, "RGB灯定时器", "RGB灯定时器");
             }
         });
-
-        findViewById(R.id.testShareImage).setOnClickListener(new OnClickListener() {
-
+        findViewById(R.id.test_scene).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.welcome);
-                mHostActivity.openShareMediaActivity("智能家庭开发平台", "小米智能家庭开发平台", null, bitmap, null, null);
+                ArrayList<String> menus = new ArrayList<String>();
+                ArrayList<Intent> intents = new ArrayList<Intent>();
+                if (XmPluginHostApi.instance().getApiLevel() > 5) {
+                    Intent sceneIntent = new Intent();
+                    sceneIntent.putExtra(
+                            IXmPluginHostActivity.KEY_INTENT_TARGET_ACTIVITY_IN_HOST,
+                            IXmPluginHostActivity.TARGET_ACTIVITY_IN_HOST_DEVICE_SCENE);
+
+                    sceneIntent.putExtra("menu", "智能场景");
+                    sceneIntent.putExtra("device_id", mDeviceStat.did);
+                    intents.add(sceneIntent);
+                }
+                mHostActivity.openMoreMenu(menus, intents, true, 1);
+            }
+        });
+        
+        findViewById(R.id.open_shop).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://home.mi.com/shop/search?action=check&keyword=小蚁摄像头 夜视&source=com.xiaomi.smarthome​");
+                XmPluginHostApi.instance().gotoPage(activity(), mPluginPackage, uri, null);
             }
         });
     }

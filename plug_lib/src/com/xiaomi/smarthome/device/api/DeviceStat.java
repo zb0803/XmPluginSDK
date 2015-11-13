@@ -69,6 +69,9 @@ public class DeviceStat implements Parcelable {
     /**ApiLevel:8*/
     public String event;
     
+    /**ApiLevel:10*/
+    public int permitLevel;
+    
     public DeviceStat() {
         did = "";
         name = "";
@@ -115,6 +118,7 @@ public class DeviceStat implements Parcelable {
         }
         showMode = in.readInt();
         event = in.readString();
+        permitLevel = in.readInt();
     }
 
     @Override
@@ -143,6 +147,7 @@ public class DeviceStat implements Parcelable {
         dest.writeString(propInfo.toString());
         dest.writeInt(showMode);
         dest.writeString(event);
+        dest.writeInt(permitLevel);
     }
 
     public static final Parcelable.Creator<DeviceStat> CREATOR = new Parcelable.Creator<DeviceStat>() {

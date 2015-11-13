@@ -3,16 +3,16 @@
     android:id="@+id/parentPanel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f8f8f8"
     android:layout_gravity="bottom"
+    android:background="@color/dialog_bg"
     android:layoutAnimation="@anim/v5_dialog_layout_anim"
     android:orientation="vertical" >
 
-    <View
+      <View
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/alertdialog_top_indent" />
-
+      
     <LinearLayout
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:id="@+id/title_template"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|left"
+            android:gravity="center_vertical"
             android:orientation="horizontal" >
 
             <ImageView
@@ -44,16 +44,17 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:singleLine="true"
-                android:textColor="@color/class_V"
+                android:textColor="@color/dialog_title_txt_color"
                 android:textSize="@dimen/font_size_4" />
         </LinearLayout>
         <!-- If the client uses a customTitle, it will be added here. -->
     </LinearLayout>
-    <View 
+
+    <View
         android:id="@+id/title_divider_line"
         android:layout_width="fill_parent"
         android:layout_height="2px"
-        android:background="#ececec"/>
+        android:background="@android:drawable/divider_horizontal_bright" />
 
     <LinearLayout
         android:id="@+id/contentPanel"
@@ -76,8 +77,8 @@
                 android:gravity="center"
                 android:paddingLeft="@dimen/alertdialog_content_panel_message_padding"
                 android:paddingRight="@dimen/alertdialog_content_panel_message_padding"
-                android:textColor="@color/class_W"
-                android:textSize="@dimen/font_size_5" />
+                android:textColor="@color/dialog_sub_title_txt_color"
+                android:textSize="@dimen/alertdialog_message_text_size" />
         </ScrollView>
     </LinearLayout>
 
@@ -93,15 +94,22 @@
             android:layout_height="wrap_content" />
     </FrameLayout>
 
+      <View
+        android:id="@+id/title_divider_line_bottom"
+        android:layout_marginBottom="@dimen/alertdialog_content_panel_margin_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@drawable/std_dialog_line" />
+      
     <LinearLayout
         android:id="@+id/buttonPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/alertdialog_button_panel_padding_vertical"
+        android:layout_marginBottom="@dimen/alertdialog_button_panel_padding_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/alertdialog_button_panel_padding_horizontal"
-        android:paddingRight="@dimen/alertdialog_button_panel_padding_horizontal"
-        android:paddingTop="15dp"
-        android:orientation="horizontal" >
+        android:paddingRight="@dimen/alertdialog_button_panel_padding_horizontal" >
+
         <Button
             android:id="@+id/button2"
             android:layout_width="0dip"

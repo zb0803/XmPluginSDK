@@ -1,9 +1,12 @@
+
 package com.xiaomi.smarthome.common.ui.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Checkable;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,9 +15,9 @@ import com.xiaomi.common.R;
 /**
  * Created by zhangpengfei on 14-1-21.
  */
-public class SingleCheckLinearLayout extends LinearLayout implements Checkable{
+public class SingleCheckLinearLayout extends LinearLayout implements Checkable {
 
-    CheckBox mCheckBox;
+    View mSelectImageIconView;;
     Context mContext;
     TextView mTextView;
 
@@ -29,19 +32,23 @@ public class SingleCheckLinearLayout extends LinearLayout implements Checkable{
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mCheckBox = (CheckBox) findViewById(R.id.checkbox);
-        mTextView = (TextView)findViewById(R.id.text1);
+        mSelectImageIconView = findViewById(R.id.select_icon);
+        mTextView = (TextView) findViewById(R.id.text1);
     }
 
     @Override
     public void setChecked(boolean checked) {
-        mCheckBox.setChecked(checked);
-        if(mTextView!= null)mTextView.setSelected(checked);
+        if (checked) {
+            mSelectImageIconView.setVisibility(View.VISIBLE);
+        } else {
+            mSelectImageIconView.setVisibility(View.INVISIBLE);
+        }
+        mTextView.setSelected(checked);
     }
 
     @Override
     public boolean isChecked() {
-        return mCheckBox.isChecked();
+        return mTextView.isSelected();
     }
 
     @Override
